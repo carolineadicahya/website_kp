@@ -1,6 +1,6 @@
 # Portal Career
 
-Website Pendaftaran Magang Online yang dibangun menggunalan kerangka kerja ReactJS - Vite dan database ExpressJS
+Website Pendaftaran Magang Online yang dibangun menggunalan kerangka kerja ReactJS - Vite dan Database MySQL dengan API ExpressJS
 
 ## Deskripsi 📰
 
