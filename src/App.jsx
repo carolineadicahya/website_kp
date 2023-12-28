@@ -1,23 +1,38 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { initFlowbite } from "flowbite";
-import RootLayout from "./layouts/RootLayout";
-import LandingPage from "./pages/landing_pages"; // Make sure the filename matches
+import { useEffect } from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
 
-const App = () => {
+import RootLayout from "./layouts/RootLayout";
+
+import LandingPages from "./pages/LandingPage";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<LandingPages />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Route>
+  )
+);
+
+function App() {
   useEffect(() => {
     initFlowbite();
+    if (!localStorage.getItem("savedPage")) {
+      localStorage.setItem("savedPage", JSON.stringify([]));
+    }
   }, []);
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<RootLayout />} />
-        <Route path="/landing_page" element={<LandingPage />} />
-      </Routes>
-    </Router>
-  );
-};
+  return <RouterProvider router={router} />;
+}
 
 export default App;
