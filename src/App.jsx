@@ -1,5 +1,5 @@
 import "./App.css";
-import { initFlowbite } from "flowbite";
+import { Tabs, initFlowbite } from "flowbite";
 import { useEffect } from "react";
 import {
   createBrowserRouter,
@@ -13,6 +13,8 @@ import RootLayout from "./layouts/RootLayout";
 import LandingPages from "./pages/LandingPage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import DaftarProgram from "./pages/DaftarProgram";
+import TabForm from "./components/tabs";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +22,8 @@ const router = createBrowserRouter(
       <Route index element={<LandingPages />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/career" element={<DaftarProgram />} />
+      <Route path="/form" element={<TabForm />} />
     </Route>
   )
 );
