@@ -14,9 +14,8 @@ import LandingPages from "./pages/LandingPage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import DaftarProgram from "./pages/DaftarProgram";
+// import TabForm from "./components/tabs";
 import StepperLayout from "./layouts/StepperLayout";
-import TabForm from "./components/tabs";
-// import StepperControl from "./components/stepper_control";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +24,8 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/career" element={<DaftarProgram />} />
-      <Route path="/form" element={<TabForm />} />
+      {/* <Route path="/form" element={<TabForm />} /> */}
+      <Route path="/form" element={<StepperLayout />} />
     </Route>
   )
 );
