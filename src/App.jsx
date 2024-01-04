@@ -1,5 +1,5 @@
 import "./App.css";
-import { Tabs, initFlowbite } from "flowbite";
+import { initFlowbite } from "flowbite";
 import { useEffect } from "react";
 import {
   createBrowserRouter,
@@ -14,7 +14,9 @@ import LandingPages from "./pages/LandingPage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import DaftarProgram from "./pages/DaftarProgram";
+import StepperLayout from "./layouts/StepperLayout";
 import TabForm from "./components/tabs";
+// import StepperControl from "./components/stepper_control";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

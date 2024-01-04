@@ -49,14 +49,13 @@ const Register = () => {
               {/* Nama input */}
               <div className="mb-6">
                 <label
-                  htmlFor="nama"
+                  for="name"
                   className="block text-sm font-medium text-neutral-700">
                   Nama Lengkap
                 </label>
                 <input
-                  type="nama"
-                  id="nama"
-                  value={email}
+                  type="text"
+                  id="name"
                   onChange={(e) => setNama(e.target.value)}
                   className="w-full mt-1 px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:ring-2"
                 />

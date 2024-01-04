@@ -1,6 +1,8 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export const DataForm = ({ data }) => {
+  const storedLogin = localStorage.getItem("islogin");
   const navigate = useNavigate(); // Add parentheses here
 
   return (

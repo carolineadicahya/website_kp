@@ -6,6 +6,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const handleGetStarted = () => {
+    navigate("/form");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +22,7 @@ const Login = () => {
       }
       if (email === storedEmail && password === storedPassword) {
         localStorage.setItem("islogin", true);
-        navigate("/");
+        handleGetStarted();
         window.location.reload();
         window.alert("Login Sukses");
       } else {
