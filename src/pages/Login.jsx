@@ -7,7 +7,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const handleGetStarted = () => {
-    navigate("/form");
+    navigate("/profil");
   };
 
   const handleSubmit = (e) => {
