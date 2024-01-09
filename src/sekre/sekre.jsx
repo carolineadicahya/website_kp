@@ -1,12 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import gambar1 from "../assets/gambar1.jpg";
 import gambar2 from "../assets/gambar2.jpg";
-import gambar3 from "../assets/gambar3.jpg";
 import gambar4 from "../assets/gambar4.jpg";
-import gambar5 from "../assets/gambar5.jpg";
 
 const Sekretaris = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/peserta_review");
+  };
+
   return (
     <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -166,8 +171,8 @@ const Sekretaris = () => {
               <td class="px-6 py-4">
                 {/* <!-- Modal toggle --> */}
                 <a
-                  href="#"
                   type="button"
+                  onClick={handleGetStarted}
                   data-modal-target="editUserModal"
                   data-modal-show="editUserModal"
                   class="text-center font-medium text-blue-600 dark:text-blue-500 hover:underline">

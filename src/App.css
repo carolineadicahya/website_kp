@@ -33,6 +33,14 @@
   }
 }
 
+.items-left {
+  text-align: left;
+}
+
+.items-left button {
+  margin-right: 10px; /* Optional: Add some space to the right of the button */
+}
+
 .card {
   padding: 2em;
 }

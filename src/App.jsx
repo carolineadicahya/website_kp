@@ -16,10 +16,13 @@ import Login from "./pages/Login";
 import DaftarProgram from "./pages/DaftarProgram";
 // import TabForm from "./components/tabs";
 // import StepperLayout from "./layouts/StepperLayout";
-import Status from "./anak_magang/status";
-import Profil from "./anak_magang/profil";
+import Status from "./peserta/status";
+import Profil from "./peserta/profil";
 import Sekretaris from "./sekre/sekre";
 import SDM from "./sdm/sdm";
+import Review from "./sekre/detail_peserta";
+import Detail from "./sdm/detail_peserta";
+import Upload from "./components/upload_file";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +37,9 @@ const router = createBrowserRouter(
       <Route path="/profil" element={<Profil />} />
       <Route path="/sekretaris" element={<Sekretaris />} />
       <Route path="/sdm" element={<SDM />} />
+      <Route path="/peserta_review" element={<Review />} />
+      <Route path="/detail_peserta" element={<Detail />} />
+      <Route path="/surat_balasan" element={<Upload />} />
     </Route>
   )
 );
