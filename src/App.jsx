@@ -18,6 +18,8 @@ import DaftarProgram from "./pages/DaftarProgram";
 // import StepperLayout from "./layouts/StepperLayout";
 import Status from "./anak_magang/status";
 import Profil from "./anak_magang/profil";
+import Sekretaris from "./sekre/sekre";
+import SDM from "./sdm/sdm";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +32,8 @@ const router = createBrowserRouter(
       {/* <Route path="/form" element={<StepperLayout />} /> */}
       <Route path="/dashboard" element={<Status />} />
       <Route path="/profil" element={<Profil />} />
+      <Route path="/sekretaris" element={<Sekretaris />} />
+      <Route path="/sdm" element={<SDM />} />
     </Route>
   )
 );
@@ -37,9 +41,9 @@ const router = createBrowserRouter(
 function App() {
   useEffect(() => {
     initFlowbite();
-    if (!localStorage.getItem("savedPage")) {
-      localStorage.setItem("savedPage", JSON.stringify([]));
-    }
+    // if (!localStorage.getItem("savedPage")) {
+    //   localStorage.setItem("savedPage", JSON.stringify([]));
+    // }
   }, []);
 
   return <RouterProvider router={router} />;
