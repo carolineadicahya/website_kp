@@ -23,6 +23,10 @@ import SDM from "./sdm/sdm";
 import Review from "./sekre/detail_peserta";
 import Detail from "./sdm/detail_peserta";
 import Upload from "./components/upload_file";
+import Diri from "./layouts/form_stepper/DataDiri";
+import Pendidikan from "./layouts/form_stepper/DataPendidikan";
+import Magang from "./layouts/form_stepper/DataMagang";
+import Lampiran from "./layouts/form_stepper/Lampiran";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,10 +40,14 @@ const router = createBrowserRouter(
       <Route path="/dashboard" element={<Status />} />
       <Route path="/profil" element={<Profil />} />
       <Route path="/sekretaris" element={<Sekretaris />} />
-      <Route path="/sdm" element={<SDM />} />
-      <Route path="/peserta_review" element={<Review />} />
+      <Route path="/peserta_reviewed" element={<SDM />} />
+      <Route path="/peserta_magang" element={<Review />} />
       <Route path="/detail_peserta" element={<Detail />} />
       <Route path="/surat_balasan" element={<Upload />} />
+      <Route path="/data_diri" element={<Diri />} />
+      <Route path="/data_pendidikan" element={<Pendidikan />} />
+      <Route path="/data_magang" element={<Magang />} />
+      <Route path="/lampiran" element={<Lampiran />} />
     </Route>
   )
 );

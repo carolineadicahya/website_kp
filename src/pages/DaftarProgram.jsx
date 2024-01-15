@@ -5,7 +5,7 @@ const DaftarProgram = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    navigate("/login");
+    navigate("/data_diri");
   };
 
   return (

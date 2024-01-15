@@ -9,7 +9,7 @@ const Sekretaris = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    navigate("/peserta_review");
+    navigate("/peserta_magang");
   };
 
   return (
