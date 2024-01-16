@@ -29,7 +29,7 @@ const SDM = () => {
               <span className="sr-only">Action button</span>
               Action
               <svg
-                className="w-2.5 h-2.5 ms-2.5"
+                classNameName="w-2.5 h-2.5 ms-2.5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -145,103 +145,113 @@ const SDM = () => {
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td class="w-4 p-4">
-                <div class="flex items-center">\ </div>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <td className="w-4 p-4">
+                <div className="flex items-center">\ </div>
               </td>
               <th
                 scope="row"
-                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                 <img
-                  class="w-10 h-10 rounded-full"
+                  className="w-10 h-10 rounded-full"
                   src={gambar4}
                   alt="Jese image"
                 />
-                <div class="ps-3">
-                  <div class="text-base font-semibold">Almaditha Dara</div>
-                  <div class="font-normal text-gray-500">alma.nyenye.com</div>
+                <div className="ps-3">
+                  <div className="text-base font-semibold">Almaditha Dara</div>
+                  <div className="font-normal text-gray-500">
+                    alma.nyenye.com
+                  </div>
                 </div>
               </th>
-              <td class="text-center px-6 py-4">S1</td>
-              <td class="text-center px-6 py-4">ITK</td>
-              <td class="text-center px-6 py-4">Software</td>
-              <td class="text-center px-6 py-4">
+              <td className="text-center px-6 py-4">S1</td>
+              <td className="text-center px-6 py-4">ITK</td>
+              <td className="text-center px-6 py-4">Software</td>
+              <td className="text-center px-6 py-4">
                 11 Desember 2023 - 10 Februari 2024
               </td>
-              <td class="px-6 py-4">
+              <td className="px-6 py-4">
                 {/* <!-- Modal toggle --> */}
                 <a
                   type="button"
                   onClick={handleGetStarted}
                   data-modal-target="editUserModal"
                   data-modal-show="editUserModal"
-                  class="text-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                  className="text-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
                   Detail
                 </a>
               </td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td class="w-4 p-4">
-                <div class="flex items-center"></div>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <td className="w-4 p-4">
+                <div className="flex items-center"></div>
               </td>
               <th
                 scope="row"
-                class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <img
-                  className="w-10 h-10 rounded-full"
+                  classNameName="w-10 h-10 rounded-full"
                   src={gambar1}
                   alt="Jese image"
                 />
-                <div class="ps-3">
-                  <div class="text-base font-semibold">Caroline Adi Cahya</div>
-                  <div class="font-normal text-gray-500">oyin.nyenye.com</div>
+                <div className="ps-3">
+                  <div className="text-base font-semibold">
+                    Caroline Adi Cahya
+                  </div>
+                  <div className="font-normal text-gray-500">
+                    oyin.nyenye.com
+                  </div>
                 </div>
               </th>
-              <td class="text-center px-6 py-4">S1</td>
-              <td class="text-center px-6 py-4">ITK</td>
-              <td class="text-center px-6 py-4">Software</td>
-              <td class="text-center px-6 py-4">
+              <td className="text-center px-6 py-4">S1</td>
+              <td className="text-center px-6 py-4">ITK</td>
+              <td className="text-center px-6 py-4">Software</td>
+              <td className="text-center px-6 py-4">
                 11 Desember 2023 - 10 Februari 2024
               </td>
-              <td class="px-6 py-4">
+              <td className="px-6 py-4">
                 {/* <!-- Modal toggle --> */}
                 <a
                   href="#"
                   type="button"
                   data-modal-show="editUserModal"
-                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                   Detail
                 </a>
               </td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td class="w-4 p-4">
-                <div class="flex items-center"></div>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <td className="w-4 p-4">
+                <div className="flex items-center"></div>
               </td>
               <th
                 scope="row"
-                class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <img
-                  class="w-10 h-10 rounded-full"
+                  className="w-10 h-10 rounded-full"
                   src={gambar2}
                   alt="Jese image"
                 />
-                <div class="ps-3">
-                  <div class="text-base font-semibold">Anisya Indra </div>
-                  <div class="font-normal text-gray-500">alma.nyenye.com</div>
+                <div className="ps-3">
+                  <div className="text-base font-semibold">Anisya Indra </div>
+                  <div className="font-normal text-gray-500">
+                    alma.nyenye.com
+                  </div>
                 </div>
               </th>
-              <td class="text-center px-6 py-4">S1</td>
-              <td class="text-center px-6 py-4">ITK</td>
-              <td class="text-center px-6 py-4">Bisnis IT</td>
-              <td class="text-center px-6 py-4">08 Januari - 10 Februari</td>
-              <td class="px-6 py-4">
+              <td className="text-center px-6 py-4">S1</td>
+              <td className="text-center px-6 py-4">ITK</td>
+              <td className="text-center px-6 py-4">Bisnis IT</td>
+              <td className="text-center px-6 py-4">
+                08 Januari - 10 Februari
+              </td>
+              <td className="px-6 py-4">
                 {/* <!-- Modal toggle --> */}
                 <a
                   href="#"
                   type="button"
                   data-modal-show="editUserModal"
-                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                   Detail
                 </a>
               </td>

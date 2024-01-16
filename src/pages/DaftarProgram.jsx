@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 const DaftarProgram = () => {
   const navigate = useNavigate();
+  const storedLogin = localStorage.getItem("islogin");
 
   const handleGetStarted = () => {
-    navigate("/data_diri");
+    {
+      storedLogin === "true" ? navigate("/data_diri") : navigate("/login");
+    }
   };
 
   return (

@@ -14,58 +14,60 @@ const detailPeserta = () => {
         Detail Almaditha
       </h4>
       <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"></thead>
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"></thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Nama
               </th>
-              <td class="px-6 py-4 text-left">Almaditha Dara Tivani</td>
+              <td className="px-6 py-4 text-left">Almaditha Dara Tivani</td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Institusi
               </th>
-              <td class="px-6 py-4 text-left">Institut Teknologi Kalimantan</td>
+              <td className="px-6 py-4 text-left">
+                Institut Teknologi Kalimantan
+              </td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Jurusan/Fakultas
               </th>
-              <td class="px-6 py-4 text-left">
+              <td className="px-6 py-4 text-left">
                 Matematika dan Teknologi Informasi
               </td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Program Studi
               </th>
-              <td class="px-6 py-4 text-left">Informatika</td>
+              <td className="px-6 py-4 text-left">Informatika</td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Durasi
               </th>
-              <td class="px-6 py-4 text-left">2 Bulan</td>
+              <td className="px-6 py-4 text-left">2 Bulan</td>
             </tr>
-            <tr class="bg-white dark:bg-gray-800">
+            <tr className="bg-white dark:bg-gray-800">
               <th
                 scope="row"
-                class="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Periode
               </th>
-              <td class="px-6 py-4 text-left">
+              <td className="px-6 py-4 text-left">
                 11 Desember 2023 - 10 Februari 2024
               </td>
             </tr>
@@ -98,18 +100,18 @@ const detailPeserta = () => {
         </div>
         {/* <div>
           <label
-            class="block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white"
             for="file_input">
             Surat Balasan
           </label>
           <input
-            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             aria-describedby="file_input_help"
             id="file_input"
             type="file"
           />
           <p
-            class="mt-1 text-sm text-left text-gray-500 dark:text-gray-300"
+            className="mt-1 text-sm text-left text-gray-500 dark:text-gray-300"
             id="file_input_help">
             SVG, PNG, JPG or GIF (MAX. 800x400px).
           </p>
@@ -117,13 +119,13 @@ const detailPeserta = () => {
         <div className="items-left">
           <label
             for="message"
-            class="mt-5 block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white">
+            className="mt-5 block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white">
             Pesan
           </label>
           <textarea
             id="message"
             rows="4"
-            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="pesan kosong"></textarea>
           <button
             // onClick={() => navigate()}
