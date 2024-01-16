@@ -12,6 +12,13 @@ const SDM = () => {
     navigate("/detail_peserta");
   };
 
+  var nama = [];
+  var institusi = [];
+  var jurusan_fakultas = [];
+  var prodi = [];
+  var durasi = [];
+  var periode = [];
+
   return (
     <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -190,7 +197,7 @@ const SDM = () => {
                 scope="row"
                 className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <img
-                  classNameName="w-10 h-10 rounded-full"
+                  className="w-10 h-10 rounded-full"
                   src={gambar1}
                   alt="Jese image"
                 />

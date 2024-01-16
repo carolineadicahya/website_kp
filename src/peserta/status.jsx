@@ -1,4 +1,6 @@
 const Status = () => {
+  var status = ["Di Kirim, Di Review, Di Terima, Di Tolak"];
+
   return (
     <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -26,7 +28,7 @@ const Status = () => {
                 className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Pendaftaran
               </th>
-              <td className="px-6 py-4 text-center">Di Kirim</td>
+              <td className="px-6 py-4 text-center">{Status}</td>
               <td className="px-6 py-4 text-center">-</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -35,7 +37,7 @@ const Status = () => {
                 className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Pendaftaran
               </th>
-              <td className="px-6 py-4 text-center">Di Review</td>
+              <td className="px-6 py-4 text-center">{Status}</td>
               <td className="px-6 py-4 text-center">-</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -44,7 +46,7 @@ const Status = () => {
                 className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Pendaftaran
               </th>
-              <td className="px-6 py-4 text-center">Di Terima</td>
+              <td className="px-6 py-4 text-center">{Status}</td>
               <td classNameName="px-6 py-4 text-center underline dark:text-white decoration-indigo-500">
                 Surat Balasan
                 <div classNameName="underline dark:text-white decoration-indigo-500">
@@ -58,7 +60,7 @@ const Status = () => {
                 className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Pendaftaran
               </th>
-              <td className="px-6 py-4 text-center">Di Tolak</td>
+              <td className="px-6 py-4 text-center">{Status}</td>
               <td className="px-6 py-4 text-center underline dark:text-white decoration-indigo-500">
                 Surat Balasan
               </td>
