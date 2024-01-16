@@ -34,14 +34,14 @@ const dataPendidikan = () => {
           </div>
           <div>
             <label
-              for="email"
+              for="text"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Email
+              text
             </label>
             <input
-              type="email"
-              name="email"
-              id="email"
+              type="text"
+              name="text"
+              id="text"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="name@company.com"
               required=""
@@ -49,14 +49,14 @@ const dataPendidikan = () => {
           </div>
           <div>
             <label
-              for="password"
+              for="text"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Password
+              text
             </label>
             <input
-              type="password"
-              name="password"
-              id="password"
+              type="text"
+              name="text"
+              id="text"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="•••••••••"
               required=""
@@ -64,14 +64,14 @@ const dataPendidikan = () => {
           </div>{" "}
           <div>
             <label
-              for="confirm-password"
+              for="confirm-text"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Confirm password
+              Confirm text
             </label>
             <input
-              type="password"
-              name="confirm-password"
-              id="confirm-password"
+              type="text"
+              name="confirm-text"
+              id="confirm-text"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="•••••••••"
               required=""
@@ -81,13 +81,13 @@ const dataPendidikan = () => {
         <div classNameName="flex flex-items">
           <button
             onClick={navigate(-1)}
-            type="submit"
+            // type="submit"
             className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
             Kembali
           </button>
           <button
             onClick={handleGetStarted}
-            type="submit"
+            // type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Selanjutnya: Data Magang
           </button>
