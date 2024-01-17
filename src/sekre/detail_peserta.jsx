@@ -89,7 +89,7 @@ const detailPeserta = () => {
         </div>
         <div className="items-left">
           <label
-            for="message"
+            htmlFor="message"
             class="mt-5 block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white">
             Pesan
           </label>

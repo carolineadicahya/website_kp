@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "flowbite-datepicker/DateRangePicker";
 
 const dataMagang = () => {
   const navigate = useNavigate();
+  const [startDate, setStartDate] = useState(new Date());
 
   const handleGetStarted = () => {
     navigate("/lampiran");
@@ -16,75 +20,89 @@ const dataMagang = () => {
         <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">
           Data Magang
         </h3>
-        <div className="grid gap-4 mb-4 sm:grid-cols-2">
+        <div className="grid gap-4 mb-4 ">
           <div>
             <label
-              for="username"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Username
+              htmlFor="durasi_magang"
+              className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Durasi Magang
             </label>
             <input
               type="text"
-              name="username"
-              id="username"
+              name="durasi_magang"
+              id="durasi_magang"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="username.example"
+              placeholder="contoh: 2 Bulan"
               required=""
             />
           </div>
           <div>
             <label
-              for="text"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              text
+              htmlFor="tanggal_mulai"
+              className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Tanggal Mulai
             </label>
-            <input
-              type="text"
-              name="text"
-              id="text"
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              type="date"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="name@company.com"
-              required=""
+              placeholder="Tanggal Mulai"
             />
           </div>
           <div>
             <label
-              for="text"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              text
+              htmlFor="tanggal_selesai"
+              className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Tanggal Selesai
             </label>
-            <input
-              type="text"
-              name="text"
-              id="text"
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              type="date"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="•••••••••"
-              required=""
+              placeholder="Tanggal Selesai"
             />
-          </div>{" "}
+          </div>
           <div>
             <label
-              for="confirm-text"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Confirm text
+              htmlFor="departemen"
+              className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Departemen
             </label>
-            <input
-              type="text"
-              name="confirm-text"
-              id="confirm-text"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="•••••••••"
-              required=""
-            />
+            <select
+              name="departemen"
+              id="departemen"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="">Pilih Departemen</option>
+              <option value="">IT</option>
+              <option value="">Teknik</option>
+            </select>
+          </div>
+          <div>
+            <label
+              htmlFor="bidang_minat"
+              className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Bidang Minat
+            </label>
+            <select
+              name="bidang_minat"
+              id="bidang_minat"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="">Pilih Bidang Minat</option>
+              <option value="">Sofware</option>
+              <option value="">Hardware</option>
+              <option value="">Kelistrikan</option>
+            </select>
           </div>
         </div>
-        <div classNameName="flex flex-items">
-          <button
-            onClick={navigate(-1)}
+        <div className="flex flex-items">
+          <a
+            onClick={() => navigate(-1)}
             // type="submit"
             className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
             Kembali
-          </button>
+          </a>
           <button
             onClick={handleGetStarted}
             // types="submit"

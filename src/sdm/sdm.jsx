@@ -36,7 +36,7 @@ const SDM = () => {
               <span className="sr-only">Action button</span>
               Action
               <svg
-                classNameName="w-2.5 h-2.5 ms-2.5"
+                className="w-2.5 h-2.5 ms-2.5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

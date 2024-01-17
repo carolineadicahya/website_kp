@@ -47,9 +47,9 @@ const Status = () => {
                 Pendaftaran
               </th>
               <td className="px-6 py-4 text-center">{Status}</td>
-              <td classNameName="px-6 py-4 text-center underline dark:text-white decoration-indigo-500">
+              <td className="px-6 py-4 text-center underline dark:text-white decoration-indigo-500">
                 Surat Balasan
-                <div classNameName="underline dark:text-white decoration-indigo-500">
+                <div className="underline dark:text-white decoration-indigo-500">
                   ID Card
                 </div>
               </td>
@@ -69,7 +69,7 @@ const Status = () => {
         </table>
       </div>
       <label
-        for="message"
+        htmlFor="message"
         className="mt-10 block mb-2 text-left text-sm font-medium text-gray-900 dark:text-white">
         Pesan
       </label>
