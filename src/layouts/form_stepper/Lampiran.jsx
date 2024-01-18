@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
 
-const Lampiran = () => {
+const DataLampiran = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
@@ -54,7 +54,7 @@ const Lampiran = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-items">
+        <div className="flex justify-between">
           <a
             onClick={() => navigate(-1)}
             // type="submit"
@@ -73,4 +73,4 @@ const Lampiran = () => {
   );
 };
 
-export default Lampiran;
+export default DataLampiran;

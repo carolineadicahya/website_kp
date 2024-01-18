@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
 
-const dataPendidikan = () => {
+const DataPendidikan = () => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -174,7 +174,7 @@ const dataPendidikan = () => {
             </form>
           )}
         </div>
-        <div className="flex flex-items">
+        <div className="flex justify-between">
           <a
             onClick={() => navigate(-1)}
             // type="submit"
@@ -193,4 +193,4 @@ const dataPendidikan = () => {
   );
 };
 
-export default dataPendidikan;
+export default DataPendidikan;

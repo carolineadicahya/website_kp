@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const detailPeserta = () => {
+const SDMDetail = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
@@ -139,4 +139,4 @@ const detailPeserta = () => {
   );
 };
 
-export default detailPeserta;
+export default SDMDetail;

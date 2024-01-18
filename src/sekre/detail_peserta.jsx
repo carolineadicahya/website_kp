@@ -1,6 +1,6 @@
 import React from "react";
 
-const detailPeserta = () => {
+const SekreDetail = () => {
   var nama = "Almaditha Dara Tivani";
   var institusi = "Institut Teknologi Kalimanatan";
   var jurusan_fakultas = "Matematika dan Teknologi Informasi";
@@ -109,4 +109,4 @@ const detailPeserta = () => {
   );
 };
 
-export default detailPeserta;
+export default SekreDetail;

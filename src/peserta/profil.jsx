@@ -1,6 +1,6 @@
 import { React } from "react";
 
-const Profil = () => {
+const ProfilPeserta = () => {
   var nama = "Almaditha Dara Tivani";
   var Institusi = "Institut Teknologi Kalimanatan";
   var jurusan_fakultas = "Matematika dan Teknologi Informasi";
@@ -72,4 +72,4 @@ const Profil = () => {
   );
 };
 
-export default Profil;
+export default ProfilPeserta;

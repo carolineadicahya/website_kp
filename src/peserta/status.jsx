@@ -1,5 +1,5 @@
-const Status = () => {
-  var status = ["Di Kirim, Di Review, Di Terima, Di Tolak"];
+const StatusPeserta = () => {
+  var status = ["Di Kirim" || "Di Review" || "Di Terima" || "Di Tolak"];
 
   return (
     <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -28,7 +28,7 @@ const Status = () => {
                 className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Pendaftaran
               </th>
-              <td className="px-6 py-4 text-center">{Status}</td>
+              <td className="px-6 py-4 text-center">{status}</td>
               <td className="px-6 py-4 text-center">-</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -37,7 +37,7 @@ const Status = () => {
                 className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Pendaftaran
               </th>
-              <td className="px-6 py-4 text-center">{Status}</td>
+              <td className="px-6 py-4 text-center">{status}</td>
               <td className="px-6 py-4 text-center">-</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -46,10 +46,10 @@ const Status = () => {
                 className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Pendaftaran
               </th>
-              <td className="px-6 py-4 text-center">{Status}</td>
-              <td className="px-6 py-4 text-center underline dark:text-white decoration-indigo-500">
+              <td className="px-6 py-4 text-center">{status}</td>
+              <td className="px-6 py-4 text-center underline dark:text-white decoration-gray-500">
                 Surat Balasan
-                <div className="underline dark:text-white decoration-indigo-500">
+                <div className="underline dark:text-white decoration-gray-500">
                   ID Card
                 </div>
               </td>
@@ -60,8 +60,8 @@ const Status = () => {
                 className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Pendaftaran
               </th>
-              <td className="px-6 py-4 text-center">{Status}</td>
-              <td className="px-6 py-4 text-center underline dark:text-white decoration-indigo-500">
+              <td className="px-6 py-4 text-center">{status}</td>
+              <td className="px-6 py-4 text-center underline dark:text-white decoration-gray-500">
                 Surat Balasan
               </td>
             </tr>
@@ -82,4 +82,4 @@ const Status = () => {
   );
 };
 
-export default Status;
+export default StatusPeserta;

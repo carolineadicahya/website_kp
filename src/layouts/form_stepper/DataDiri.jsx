@@ -1,10 +1,34 @@
-import React from "react";
+import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
 
-const dataDiri = () => {
-  const navigate = useNavigate();
+const DataDiri = () => {
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [birth, setBirth] = useState("");
+  const [address, setAddress] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [gender, setGender] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!fullname || !email || !birth || !address || !whatsapp || !gender) {
+      window.alert("Semua data harus di isi!");
+    } else {
+      localStorage.setItem("fullname", fullname);
+      localStorage.setItem("email", email);
+      localStorage.setItem("birth", birth);
+      localStorage.setItem("address", address);
+      localStorage.setItem("whatsapp", whatsapp);
+      localStorage.setItem("gender", gender);
+      localStorage.setItem("islogin", true);
+
+      navigate("/data_pendidikan");
+    }
+  };
+
+  const navigate = useNavigate();
   const handleGetStarted = () => {
     navigate("/data_pendidikan");
   };
@@ -12,7 +36,7 @@ const dataDiri = () => {
   return (
     <div>
       <CustomStepper activeStep={0} />
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">
           Data Diri
         </h3>
@@ -27,6 +51,8 @@ const dataDiri = () => {
               type="text"
               name="fullname"
               id="fullname"
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="contoh: Almaditha Dara Tivani"
               required=""
@@ -42,6 +68,8 @@ const dataDiri = () => {
               type="email"
               name="email"
               id="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="contoh: almaditha@gmail.com"
               required=""
@@ -57,6 +85,8 @@ const dataDiri = () => {
               type="text"
               name="text"
               id="text"
+              value={birth}
+              onChange={(e) => setBirth(e.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="contoh: Balikpapan, 01 Januari 2000"
               required=""
@@ -72,6 +102,8 @@ const dataDiri = () => {
               type="text"
               name="alamat"
               id="alamat"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="contoh: Jl No.Rumah No.RT, Kelurahan, Kecamatan"
               required=""
@@ -87,8 +119,10 @@ const dataDiri = () => {
               type="text"
               name="whatsapp"
               id="whatsapp"
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="contoh: +6281234567890"
+              placeholder="contoh: 081234567890"
               required=""
             />
           </div>
@@ -102,6 +136,7 @@ const dataDiri = () => {
               type="radio"
               name="gender"
               id="gender"
+              onChange={() => setGender("Laki-Laki")}
               className="mr-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
             />
             Laki-Laki
@@ -109,15 +144,16 @@ const dataDiri = () => {
               type="radio"
               name="gender"
               id="gender"
+              onChange={() => setGender("Perempuan")}
               className="ml-10 mr-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
             />
             Perempuan
           </div>
         </div>
-        <div className="mt-2 flex flex-items">
+        <div className=" flex justify-end">
           <button
             onClick={handleGetStarted}
-            // type="submit"
+            type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Selanjutnya: Data Pendidikan
           </button>
@@ -127,4 +163,4 @@ const dataDiri = () => {
   );
 };
 
-export default dataDiri;
+export default DataDiri;
