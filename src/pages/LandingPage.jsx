@@ -28,8 +28,10 @@ const LandingPage = () => {
     <section className="mt-20">
       <div className="max-h-screen flex items-center justify-center ">
         <div className="max-w-xl p-6 bg-white">
-          <h1 className="text-4xl font-bold mb-4">Portal Career</h1>
-          <p className="text-gray-600 mb-8">
+          <h1 className="text-l font-bold mb-4 text-[#0b4d8c]">
+            Portal Career
+          </h1>
+          <p className="text-[#3c4043] text-m mb-8">
             Selamat Datang di Portal Career! Portal Career adalah Website
             Pendaftaran Magang Online untuk memudahkan siswa-siswi SMK dan
             mahasiswa-mahasiswi dalam mendaftar magang atau kerja praktik (KP)
@@ -134,7 +136,7 @@ const LandingPage = () => {
 
           <button
             onClick={handleGetStarted}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+            className="bg-[#0b4d8c] text-white px-4 py-2 rounded-md hover:bg-[#a6d16a] hover:text-[#3c4043]">
             Lihat Program
           </button>
         </div>
@@ -142,7 +144,9 @@ const LandingPage = () => {
       <div className="flex">
         <div className="flex items-center justify-left border mr-4">
           <div className="max-w-xl p-6">
-            <h4 className="text-4xl font-bold mb-4">Apa Saja Syaratnya?</h4>
+            <h4 className="text-4xl font-bold text-[#0b4d8c] mb-4">
+              Apa Saja Syaratnya?
+            </h4>
             <p className="text-center text-gray-600 mb-8">
               <ol>Surat Pengantar </ol>
               <ol>Pas Foto 4x6</ol>
@@ -151,7 +155,9 @@ const LandingPage = () => {
         </div>
         <div className="flex items-center justify-left border ml-4">
           <div className="max-w-xl p-6">
-            <h4 className="text-4xl font-bold mb-4">Apa yang Didapatkan?</h4>
+            <h4 className="text-4xl font-bold text-[#0b4d8c] mb-4">
+              Apa yang Didapatkan?
+            </h4>
             <p className="text-center text-gray-600 mb-8">
               <ol>Ilmu yang bermanfaat </ol>
               <ol>Sertifikat Magang</ol>

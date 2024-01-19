@@ -9,15 +9,15 @@ const CustomStepper = ({ activeStep }) => {
           activeStep={activeStep}
           connectorStateColors="true"
           connectorStyleConfig={{
-            activeColor: "#1e40af",
-            completedColor: "#1e40af",
+            activeColor: "#1e2022",
+            completedColor: "#1e2022",
             disabledColor: "#374151",
             size: 2,
           }}
           styleConfig={{
-            activeBgColor: "#1e40af",
-            completedBgColor: "#1e40af",
-            inactiveBgColor: "#374151",
+            activeBgColor: "#0b4d8c",
+            completedBgColor: "#74914a",
+            inactiveBgColor: "#3c4043",
           }}>
           <Step label="Data Diri" />
           <Step label="Data Pendidikan" />

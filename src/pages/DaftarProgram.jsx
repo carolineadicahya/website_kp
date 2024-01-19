@@ -1,27 +1,33 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import daftar_program from "../assets/daftar_program.png";
 
 const DaftarProgram = () => {
   const navigate = useNavigate();
   const storedLogin = localStorage.getItem("islogin");
 
   const handleGetStarted = () => {
-    {
-      storedLogin === "true" ? navigate("/data_diri") : navigate("/login");
-    }
+    storedLogin === "true" ? navigate("/data_diri") : navigate("/login");
   };
 
   return (
-    <section className="">
-      <div className="mb-8 self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-        Daftar Program
+    <section className="flex flex-col items-center">
+      <h1 className="text-4xl font-bold mb-8 text-[#0b4d8c]">Daftar Program</h1>
+      <div className="flex justify-center items-center mb-12 md:mb-0 md:w-4/12 lg:w-4/14">
+        <button
+          onClick={handleGetStarted}
+          className="text-2xl bg-[#0b4d8c] text-white rounded-md hover:bg-white hover:text-[#74914a] mx-auto text-center"
+          style={{ width: "fit-content" }}>
+          <img
+            src={daftar_program}
+            className="w-3/4 mb-4 mx-auto"
+            alt="magang"
+          />
+          Magang atau Kerja Praktik (KP)
+        </button>
       </div>
-      <button
-        onClick={handleGetStarted}
-        className="px-40 py-40 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
-        Magang atau Kerja Praktik (KP)
-      </button>
     </section>
   );
 };
+
 export default DaftarProgram;

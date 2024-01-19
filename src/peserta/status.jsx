@@ -2,7 +2,7 @@ const StatusPeserta = () => {
   var status = ["Di Kirim" || "Di Review" || "Di Terima" || "Di Tolak"];
 
   return (
-    <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+    <div className="mt-20 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
         Status Progres
       </h4>
