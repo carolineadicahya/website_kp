@@ -37,7 +37,7 @@ const router = createBrowserRouter(
       <Route path="/profil" element={<ProfilPeserta />} />
       <Route path="/sekretaris" element={<Sekretaris />} />
       <Route path="/peserta_magang" element={<SekreDetail />} />
-      <Route path="/peserta_reviewed" element={<SDM />} />
+      <Route path="/sdm" element={<SDM />} />
       <Route path="/detail_peserta" element={<SDMDetail />} />
       <Route path="/surat_balasan" element={<Upload />} />
       <Route path="/data_diri" element={<DataDiri />} />

@@ -82,7 +82,7 @@ const SekreDetail = () => {
           <div className="items-left">
             <button
               onClick={() => navigate()}
-              className="bg-blue-500 text-white px-2 py-1 mb-6 rounded-md hover:bg-blue-600">
+              className="bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-6 rounded-md">
               Review
             </button>
           </div>
@@ -100,7 +100,7 @@ const SekreDetail = () => {
             placeholder="pesan kosong"></textarea>
           <button
             // onClick={() => navigate()}
-            className="mt-3 bg-blue-500 text-white px-2 py-1 mb-3 rounded-md hover:bg-blue-600">
+            className="mt-3 bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-3 rounded-md">
             Kirim
           </button>
         </div>
