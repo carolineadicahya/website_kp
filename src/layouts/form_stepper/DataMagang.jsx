@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+
 import Datepicker from "react-tailwindcss-datepicker";
 
 const DataMagang = () => {
   const navigate = useNavigate();
 
-  const [value, setValue] = useState({
+  const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
   });
 
-  const handleValueChange = (newValue) => {
-    console.log("newValue:", newValue);
-    setValue(newValue);
+  const handleDateChange = (newValue) => {
+    setDateRange(newValue);
   };
 
   const handleGetStarted = () => {
@@ -94,10 +92,11 @@ const DataMagang = () => {
                 useRange={false}
                 asSingle={true}
                 displayFormat="DD/MM/YYYY"
-                value={value}
-                onChange={handleValueChange}
+                value={dateRange.startDate}
+                onChange={(newValue) =>
+                  handleDateChange({ ...dateRange, startDate: newValue })
+                }
                 type="date"
-                // customInput={<ExampleCustomInput />}
                 placeholder="Masukkan Tanggal"
               />
             </div>
@@ -113,10 +112,11 @@ const DataMagang = () => {
                 useRange={false}
                 asSingle={true}
                 displayFormat="DD/MM/YYYY"
-                value={value}
-                onChange={handleValueChange}
+                value={dateRange.endDate}
+                onChange={(newValue) =>
+                  handleDateChange({ ...dateRange, endDate: newValue })
+                }
                 type="date"
-                // customInput={<ExampleCustomInput />}
                 placeholder="Masukkan Tanggal"
               />
             </div>

@@ -31,7 +31,7 @@ const LandingPage = () => {
             secara online di Rumah Sakit Pertamina Balikpapan.
           </p>
 
-          <img className="mb-2" src={background} alt="Pemanis" />
+          <img className="mb-4 rounded-lg" src={background} alt="Pemanis" />
 
           <button
             onClick={handleGetStarted}
