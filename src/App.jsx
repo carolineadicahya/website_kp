@@ -8,6 +8,10 @@ import {
   Route,
 } from "react-router-dom";
 
+// import { render } from "react-dom";
+// import { faHome } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import RootLayout from "./layouts/RootLayout";
 
 import LandingPages from "./pages/LandingPage";
