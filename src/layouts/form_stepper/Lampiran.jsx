@@ -64,7 +64,7 @@ const DataLampiran = () => {
           <a
             onClick={handleGetStarted}
             // type="submit"
-            className="text-white bg-[#0b4d8c] hover:bg-[#073560] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Kirim
           </a>
         </div>

@@ -11,7 +11,7 @@ const DaftarProgram = () => {
   };
 
   return (
-    <section className="flex flex-col items-center">
+    <section className="mt-10 flex flex-col items-center">
       <h1 className="text-4xl font-bold mb-8 text-[#0b4d8c]">Daftar Program</h1>
       <div className="flex justify-center items-center mb-12 md:mb-0 md:w-4/12 lg:w-4/14">
         <button
