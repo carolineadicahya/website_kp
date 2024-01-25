@@ -9,7 +9,7 @@ const ProfilPeserta = () => {
   var periode = "11 Desember 2023 - 10 Februari 2024";
 
   return (
-    <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+    <div className="mt-10 rounded-sm border border-stroke bg-white px-5 dark:bg-gray-700 pt-6 pb-2.5 shadow-default dark:border-gray-700 dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
         Profil
       </h4>
@@ -23,7 +23,7 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Nama
               </th>
-              <td className="px-6 py-4 text-left">{nama}</td>
+              <td className="px-6 py-4 text-left dark:text-white">{nama}</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -31,7 +31,9 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Institusi
               </th>
-              <td className="px-6 py-4 text-left">{Institusi}</td>
+              <td className="px-6 py-4 text-left dark:text-white">
+                {Institusi}
+              </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -39,7 +41,9 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Jurusan/Fakultas
               </th>
-              <td className="px-6 py-4 text-left">{jurusan_fakultas}</td>
+              <td className="px-6 py-4 text-left dark:text-white">
+                {jurusan_fakultas}
+              </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -47,7 +51,7 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Program Studi
               </th>
-              <td className="px-6 py-4 text-left">{prodi}</td>
+              <td className="px-6 py-4 text-left dark:text-white">{prodi}</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -55,7 +59,7 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Durasi
               </th>
-              <td className="px-6 py-4 text-left">{durasi}</td>
+              <td className="px-6 py-4 text-left dark:text-white">{durasi}</td>
             </tr>
             <tr className="bg-white dark:bg-gray-800">
               <th
@@ -63,7 +67,7 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Periode
               </th>
-              <td className="px-6 py-4 text-left">{periode}</td>
+              <td className="px-6 py-4 text-left dark:text-white">{periode}</td>
             </tr>
           </tbody>
         </table>

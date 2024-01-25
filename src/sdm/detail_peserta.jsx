@@ -16,7 +16,7 @@ const SDMDetail = () => {
   var periode = "11 Desember 2023 - 10 Februari 2024";
 
   return (
-    <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+    <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-gray-800 dark:bg-gray-800 dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-left text-xl font-semibold text-black dark:text-white">
         Detail {nama}
       </h4>

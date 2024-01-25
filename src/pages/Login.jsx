@@ -53,7 +53,7 @@ const Login = () => {
               <div className="mb-6">
                 <label
                   htmlFor="email"
-                  className="block mt-3 text-left text-m font-medium text-neutral-700">
+                  className="block mt-3 text-left text-m font-medium text-neutral-700 dark:text-white">
                   Masukkan Email Anda
                 </label>
                 <input
@@ -69,7 +69,7 @@ const Login = () => {
               <div className="mb-6">
                 <label
                   htmlFor="password"
-                  className="block text-left text-m font-medium text-neutral-700">
+                  className="block text-left text-m font-medium text-neutral-700 dark:text-white">
                   Masukkan Password Anda
                 </label>
                 <input
@@ -85,7 +85,7 @@ const Login = () => {
                 {/* Forgot password link */}
                 <a
                   href="#!"
-                  className="text-[#0b4d8c] transition duration-150 ease-in-out hover:text-[#74914a] focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600">
+                  className="text-[#0b4d8c] transition duration-150 ease-in-out hover:text-[#74914a] focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600 dark:text-white">
                   Lupa Password?
                 </a>
               </div>
@@ -93,7 +93,7 @@ const Login = () => {
               {/* Submit button */}
               <button
                 type="submit"
-                className="inline-block w-full bg-[#a6d16a] hover:bg-[#74914a] rounded px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-[3c4043] hover:text-white shadow-[0_4px_9px_-4px_#74914a] transition duration-150 ease-in-out hbg-[#0b4d8c] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-0766AD-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-0766AD-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                className="inline-block w-full bg-[#a6d16a] hover:bg-[#74914a] rounded px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-[3c4043] hover:text-white shadow-[0_4px_9px_-4px_#74914a] transition duration-150 ease-in-out hbg-[#0b4d8c] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-0766AD-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-0766AD-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:text-[#1f221b] dark:hover:text-[#1f221b]">
                 Masuk
               </button>
 
@@ -107,8 +107,7 @@ const Login = () => {
                 Belum punya akun?{" "}
                 <a
                   href="/register"
-                  className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700 underline"
-                  style={{ color: "#0b4d8c" }}>
+                  className="text-danger text-[#0b4d8c] transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700 underline dark:text-[#a6d16a]">
                   Daftar Akun
                 </a>
               </p>
