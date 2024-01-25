@@ -85,10 +85,10 @@ const LandingPage = () => {
     <section className="container mx-auto mt-24 flex flex-col items-center justify-center bg-cover bg-center ">
       <div className="flex flex-col items-center md:flex-row md:justify-center">
         <div className="max-w-3xl p-4 md:p-10 mb-8 md:text-center">
-          <h1 className="text-left text-4xl md:text-5xl md:text-[#a6d16a] font-bold mb-4 text-[#0b4d8c]">
+          <h1 className="text-left text-4xl md:text-5xl dark:text-[#a6d16a] font-bold mb-4 text-[#0b4d8c]">
             Portal Career
           </h1>
-          <p className="text-left text-[#3c4043] text-md md:text-lg md:text-white mb-6">
+          <p className="text-left text-[#3c4043] text-md md:text-lg dark:text-white mb-6">
             Selamat Datang di Portal Career! Portal Career adalah Website
             Pendaftaran Magang Online untuk memudahkan siswa-siswi SMK dan
             mahasiswa-mahasiswi dalam mendaftar magang atau kerja praktik (KP)
