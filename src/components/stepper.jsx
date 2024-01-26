@@ -13,6 +13,7 @@ const CustomStepper = ({ activeStep }) => {
             completedColor: "#1e2022",
             disabledColor: "#374151",
             size: 2,
+            dark: "ffffff",
           }}
           styleConfig={{
             activeBgColor: "#0b4d8c",

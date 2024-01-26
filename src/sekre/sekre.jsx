@@ -9,7 +9,7 @@ const SDM = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    navigate("/detail_peserta");
+    navigate("/peserta_magang");
   };
 
   var nama = [];

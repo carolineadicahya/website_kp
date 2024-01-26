@@ -13,6 +13,7 @@ import {
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import RootLayout from "./layouts/RootLayout";
+import Error from "./pages/Error";
 
 import LandingPages from "./pages/LandingPage";
 import Register from "./pages/Register";
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
       <Route path="/data_pendidikan" element={<DataPendidikan />} />
       <Route path="/data_magang" element={<DataMagang />} />
       <Route path="/lampiran" element={<DataLampiran />} />
+      <Route path="/error" element={<Error />} />
     </Route>
   )
 );
