@@ -68,28 +68,27 @@ const DataPendidikan = () => {
                 className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Institusi
               </label>
-              <select
+              <input
+                type="text"
                 name=""
                 id=""
-                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="">Pilih Universitas</option>
-                <option value="">ITK</option>
-                <option value="">UNIBA</option>
-              </select>
+                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="contoh: Institut Teknologi Sepuluh November"
+              />
               <div />
 
               {/* Fakultas */}
               <label
                 htmlFor=""
                 className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Fakultas
+                Fakultas/Jurusan
               </label>
               <input
                 type="text"
                 name=""
                 id=""
                 className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="contoh: Fakultas MIPA"
+                placeholder="contoh: Fakultas Teknik Industri"
               />
               <div />
 
@@ -99,14 +98,13 @@ const DataPendidikan = () => {
                 className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Program Studi
               </label>
-              <select
+              <input
+                type="text"
                 name=""
                 id=""
-                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="">Pilih Program Studi</option>
-                <option value="">Informatika</option>
-                <option value="">Ternak Lele</option>
-              </select>
+                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="contoh: Teknik Mesin"
+              />
               <div />
 
               {/* NIM */}

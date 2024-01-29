@@ -96,7 +96,7 @@ const LandingPage = () => {
           </p>
           <button
             onClick={handleGetStarted}
-            className="flex justify-start bg-[#0b4d8c] text-white px-6 py-3 rounded-md hover:bg-[#072e54] hover:text-white dark:bg-[#c5e09c] dark:hover:bg-[#a6d16a] dark:hover:text-[#072e54] dark:text-[#072e54]">
+            className="flex justify-start bg-[#0b4d8c] text-white px-6 py-3 rounded-md hover:bg-[#072e54] hover:text-white dark:bg-[#c5e09c] dark:hover:bg-[#a6d16a] dark:hover:text-[#111827] dark:text-[#111827]">
             Lihat Program
           </button>
         </div>
@@ -111,7 +111,7 @@ const LandingPage = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-6 mt-8 mb-10">
-        <div className="max-w-md p-6 bg-[#d6e6f57a] dark:bg-[#1f221b] pb-10 md:pb-20 rounded-lg ">
+        <div className="max-w-md p-6 bg-[#d6e6f57a] dark:bg-[#272d3b] pb-10 md:pb-20 rounded-lg ">
           <h4 className="text-2xl md:text-4xl font-bold text-[#0b4d8c] mb-4 dark:text-[#d9ebbd]">
             Apa Saja Syaratnya?
           </h4>
@@ -121,7 +121,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="max-w-md p-6 bg-[#d6e6f57a] dark:bg-[#1f221b] pb-10 md:pb-20 rounded-lg ">
+        <div className="max-w-md p-6 bg-[#d6e6f57a] dark:bg-[#272d3b] pb-10 md:pb-20 rounded-lg ">
           <h4 className="text-2xl md:text-4xl font-bold text-[#0b4d8c] mb-4 dark:text-[#d9ebbd]">
             Apa yang Didapatkan?
           </h4>

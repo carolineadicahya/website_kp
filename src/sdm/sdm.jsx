@@ -26,7 +26,7 @@ const SDM = () => {
       </h4>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div className="flex pl-2 items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
+        <div className="w-full flex pl-2 items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
           <div>
             <button
               id="dropdownActionButton"
@@ -61,21 +61,28 @@ const SDM = () => {
                   <a
                     href="#"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Sekolah
+                    Siswa
                   </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Promote
+                    Mahasiswa
                   </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Activate account
+                    Diterima
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Ditolak
                   </a>
                 </li>
               </ul>
@@ -83,7 +90,7 @@ const SDM = () => {
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                  Delete User
+                  Selesai
                 </a>
               </div>
             </div>

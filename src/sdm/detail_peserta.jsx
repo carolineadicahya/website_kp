@@ -14,6 +14,7 @@ const SDMDetail = () => {
   var prodi = "Informatika";
   var durasi = "2 Bulan";
   var periode = "11 Desember 2023 - 10 Februari 2024";
+  var keterangan = "diterima tapi pangkas waktunya";
 
   return (
     <div className="mt-28 mb-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-gray-800 dark:bg-gray-800 dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -64,13 +65,21 @@ const SDMDetail = () => {
               </th>
               <td className="px-6 py-4 text-left">{durasi}</td>
             </tr>
-            <tr className="bg-white dark:bg-gray-800">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Periode
               </th>
               <td className="px-6 py-4 text-left">{periode}</td>
+            </tr>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                Keterangan
+              </th>
+              <td className="px-6 py-4 text-left">{keterangan}</td>
             </tr>
           </tbody>
         </table>

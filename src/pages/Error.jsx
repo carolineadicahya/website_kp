@@ -2,7 +2,7 @@ import error from "../assets/error.png";
 
 function Error() {
   return (
-    <div className="flex justify-center">
+    <div className="">
       <img
         src={error}
         alt="Error"
