@@ -282,6 +282,11 @@ const SDM = () => {
             {/* ... (modal content) ... */}
           </div>
         </div>
+        <div className="flex justify-end  mt-2 mb-2 mr-2">
+          <button className="bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 rounded-md">
+            Export Excel
+          </button>
+        </div>
       </div>
     </div>
   );
