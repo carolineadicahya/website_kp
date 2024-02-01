@@ -30,6 +30,7 @@ import DataDiri from "./layouts/form_stepper/DataDiri";
 import DataPendidikan from "./layouts/form_stepper/DataPendidikan";
 import DataMagang from "./layouts/form_stepper/DataMagang";
 import DataLampiran from "./layouts/form_stepper/Lampiran";
+import { FormDataProvider } from './context/FormDataContext';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -62,7 +63,11 @@ function App() {
     // }
   }, []);
 
-  return <RouterProvider router={router} />;
+  return (
+    <FormDataProvider>
+      <RouterProvider router={router} />
+    </FormDataProvider>
+  );
 }
 
 export default App;

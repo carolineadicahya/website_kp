@@ -1,7 +1,8 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
-import NavigationBar from "../../components/navbar"
+import NavigationBar from "../../components/navbar";
+import { useFormData } from "../../context/FormDataContext";
 
 const DataDiri = () => {
   const [nama, setNama] = useState("");
@@ -9,36 +10,33 @@ const DataDiri = () => {
   const [alamat, setAlamat] = useState("");
   const [noWhatsapp, setNoWhatsapp] = useState("");
   const [jenisKelamin, setJenisKelamin] = useState("");
+  const [errorText, setErrorText] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [isDataSaved, setIsDataSaved] = useState(false);
 
+  
+
+  const {formData, setFormData} = useFormData();
+  const navigate = useNavigate();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!nama || !alamat || !noWhatsapp || !tempatTanggalLahir || !jenisKelamin) {
-      window.alert("Semua data harus di isi!");
-    } else {
+      setErrorText("Semua data harus di isi!");    } 
+      else {
+        setErrorText("");
       try {
-        const response = await fetch('http://localhost:8000/peserta/add', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            nama: nama,
-            alamat: alamat,
-            no_whatsapp: noWhatsapp,
-            tempat_tanggal_lahir: tempatTanggalLahir,
-            jenis_kelamin: jenisKelamin
-          }),
+        // Simpan data formulir ke dalam konteks
+        setFormData({
+          nama: nama,
+          alamat: alamat,
+          no_whatsapp: noWhatsapp,
+          tempat_tanggal_lahir: tempatTanggalLahir,
+          jenis_kelamin: jenisKelamin
         });
-
-        if (!response.ok) {
-          throw new Error('Gagal menambahkan data ke database');
-        }
-
-        const responseData = await response.json();
-        console.log('Respon dari backend:', responseData);
-        // Lakukan sesuatu dengan respons dari backend (opsional)
+        setIsDataSaved(true);
 
         localStorage.setItem("islogin", true);
         navigate("/data_pendidikan");
@@ -49,10 +47,49 @@ const DataDiri = () => {
     }
   };
 
-  const navigate = useNavigate();
-  const handleGetStarted = () => {
-    navigate("/data_pendidikan");
+  // Fungsi untuk mengecek apakah semua kolom telah diisi
+  const checkFormValidity = () => {
+    return !(!nama || !alamat || !noWhatsapp || !tempatTanggalLahir || !jenisKelamin);
   };
+
+  // Fungsi untuk menangani perubahan input dan memperbarui status formulir
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "fullname") setNama(value);
+    else if (name === "text") setTempatTanggalLahir(value);
+    else if (name === "alamat") setAlamat(value);
+    else if (name === "whatsapp") setNoWhatsapp(value);
+    else if (name === "gender") setJenisKelamin(value);
+  };
+
+  const handleGenderChange = (e) => {
+    setJenisKelamin(e.target.value);
+  };
+
+  const handleGetStarted = () => {
+    if (!nama) {
+      document.getElementById('fullname-error').innerText = 'Kolom ini harus diisi';
+    }
+    if (!tempatTanggalLahir) {
+      document.getElementById('text-error').innerText = 'Kolom ini harus diisi';
+    }
+    if (!alamat) {
+      document.getElementById('alamat-error').innerText = 'Kolom ini harus diisi';
+    }
+    if (!noWhatsapp) {
+      document.getElementById('whatsapp-error').innerText = 'Kolom ini harus diisi';
+    }
+    if (!jenisKelamin) {
+      document.getElementById('gender-error').innerText = 'Pilih salah satu jenis kelamin';
+    }
+    if (isDataSaved) {
+      navigate("/data_pendidikan");
+    } else {
+      // Tambahkan pesan atau tindakan yang sesuai jika data belum disimpan
+      console.log("Mohon isi semua data dan simpan sebelum melanjutkan.");
+    }
+  };
+  
 
   return (
     <div>
@@ -75,11 +112,12 @@ const DataDiri = () => {
               name="fullname"
               id="fullname"
               value={nama}
-              onChange={(e) => setNama(e.target.value)}
+              onChange={handleInputChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="contoh: Almaditha Dara Tivani"
               required=""
             />
+            <span id="fullname-error" className="text-red-500 text-sm hidden">Kolom ini harus diisi</span>
           </div>
           <div>
             <label
@@ -92,11 +130,12 @@ const DataDiri = () => {
               name="text"
               id="text"
               value={tempatTanggalLahir}
-              onChange={(e) => setTempatTanggalLahir(e.target.value)}
+              onChange={handleInputChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="contoh: Balikpapan, 01 Januari 2000"
               required=""
             />
+            <span id="text-error" className="text-red-500 text-sm hidden">Kolom ini harus diisi</span>
           </div>
           <div>
             <label
@@ -109,11 +148,12 @@ const DataDiri = () => {
               name="alamat"
               id="alamat"
               value={alamat}
-              onChange={(e) => setAlamat(e.target.value)}
+              onChange={handleInputChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="contoh: Jl No.Rumah No.RT, Kelurahan, Kecamatan"
               required=""
             />
+            <span id="alamat-error" className="text-red-500 text-sm hidden">Kolom ini harus diisi</span>
           </div>
           <div>
             <label
@@ -126,11 +166,12 @@ const DataDiri = () => {
               name="whatsapp"
               id="whatsapp"
               value={noWhatsapp}
-              onChange={(e) => setNoWhatsapp(e.target.value)}
+              onChange={handleInputChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="contoh: 081234567890"
               required=""
             />
+            <span id="whatsapp-error" className="text-red-500 text-sm hidden">Kolom ini harus diisi</span>
           </div>
           <div className="text-left ">
           <label
@@ -142,7 +183,9 @@ const DataDiri = () => {
             type="radio"
             name="gender"
             id="genderLaki"
-            onChange={() => setJenisKelamin("Laki-Laki")}
+            value="Laki-Laki"
+            checked={jenisKelamin === "Laki-Laki"}
+            onChange={handleGenderChange}
             className="mr-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
           />
           Laki-Laki
@@ -150,18 +193,22 @@ const DataDiri = () => {
             type="radio"
             name="gender"
             id="genderPerempuan"
-            onChange={() => setJenisKelamin("Perempuan")}
+            value="Perempuan"
+            checked={jenisKelamin === "Perempuan"}
+            onChange={handleGenderChange}
             className="ml-10 mr-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
           />
           Perempuan
+          <span id="gender-error" className="text-red-500 text-sm hidden">Kolom ini harus diisi</span>
         </div>
         </div>
         <div className=" flex justify-end">
+          {errorText && <p className="text-red-500 text-sm mb-2">{errorText}</p>}
           <button
             onClick={handleGetStarted}
-            type="submit"
+            type="button"
             className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Selanjutnya: Data Pendidikan
+          Selanjutnya: Data Pendidikan
           </button>
         </div>
       </form>

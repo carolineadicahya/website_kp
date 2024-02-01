@@ -5,7 +5,7 @@ import NavigationBar from "../../components/navbar";
 import Datepicker from "react-tailwindcss-datepicker";
 
 const DataMagang = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedInterest, setSelectedInterest] = useState("");
   const [durasiMagang, setDurasiMagang] = useState("");
@@ -26,9 +26,16 @@ const DataMagang = () => {
   const handleDateChange = (newValue) => {
     setDateRange(newValue);
   };
+
+  // Fungsi untuk menangani saat tombol "Get Started" diklik
+  const handleGetStarted = () => {
+    navigate("/lampiran");
+  };
   
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     try {
       const response = await fetch("http://localhost:8000/peserta/add", {
         method: "POST",
@@ -55,11 +62,6 @@ const DataMagang = () => {
       console.error("Terjadi kesalahan:", error.message);
       // Tangani kesalahan, misalnya tampilkan pesan kepada pengguna
     }
-  };
-
-  const navigate = useNavigate();
-  const handleGetStarted = () => {
-    navigate("/lampiran");
   };
 
   return (
@@ -251,13 +253,11 @@ const DataMagang = () => {
           <div className="flex justify-between">
             <a
               onClick={() => navigate(-1)}
-              // type="submit"
               className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
               Kembali
             </a>
             <button
               onClick={handleGetStarted}
-              type="button"
               className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Selanjutnya: Lampiran
             </button>
