@@ -2,8 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo_rspb from "../assets/logo_rspb.png";
 
-const NavigationBar = () => {
-  const storedLogin = localStorage.getItem("islogin");
+const NavigationBar = ({ role }) => {
   const navigate = useNavigate();
 
   function logOut() {
@@ -48,7 +47,7 @@ const NavigationBar = () => {
 
         <div id="navbar-sticky" className="hidden w-full md:block md:w-auto">
           <ul className="flex flex-col p-4 md:p-0 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            {storedLogin === "false" ? (
+            {role === "guest" && (
               <>
                 <li>
                   <Link
@@ -65,7 +64,8 @@ const NavigationBar = () => {
                   </Link>
                 </li>
               </>
-            ) : (
+            )}
+            {role === "peserta" && (
               <>
                 <li>
                   <Link
@@ -88,6 +88,18 @@ const NavigationBar = () => {
                     Status
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    to="/"
+                    onClick={logOut}
+                    className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#c5e09c] dark:hover:bg-[#a6d16a] dark:hover:text-[#072e54] dark:text-[#072e54]">
+                    Keluar
+                  </Link>
+                </li>
+              </>
+            )}
+            {role === "sdm_sekretaris" && (
+              <>
                 <li>
                   <Link
                     to="/"

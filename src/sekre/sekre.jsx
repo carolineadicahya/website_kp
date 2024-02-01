@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { exportToExcel } from "react-easy-export";
+import NavigationBar from "../components/navbar";
 
 import gambar1 from "../assets/gambar1.jpg";
 import gambar2 from "../assets/gambar2.jpg";
@@ -37,6 +38,8 @@ const Sekretaris = () => {
   };
 
   return (
+    <div>
+      <NavigationBar role="sdm_sekretaris" />
     <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-gray-800 dark:bg-gray-800 dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
         Data Peserta
@@ -307,6 +310,7 @@ const Sekretaris = () => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };

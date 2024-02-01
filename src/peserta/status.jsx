@@ -1,7 +1,19 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import NavigationBar from "../components/navbar";
+
 const StatusPeserta = () => {
-  var status = ["Di Kirim" || "Di Review" || "Di Terima" || "Di Tolak"];
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/profil");
+  };
+
+  const status = "Diterima"
 
   return (
+    <div>
+    <NavigationBar role="peserta" />
     <div className="mt-20 rounded-sm border border-stroke dark:bg-gray-700 bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-gray-700 dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
         Status Progres
@@ -22,44 +34,6 @@ const StatusPeserta = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Pendaftaran
-              </th>
-              <td className="px-6 py-4 text-center dark:text-white">
-                {status}
-              </td>
-              <td className="px-6 py-4 text-center">-</td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Pendaftaran
-              </th>
-              <td className="px-6 py-4 text-center dark:text-white">
-                {status}
-              </td>
-              <td className="px-6 py-4 text-center">-</td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Pendaftaran
-              </th>
-              <td className="px-6 py-4 text-center dark:text-white">
-                {status}
-              </td>
-              <td className="px-6 py-4 text-center underline dark:text-white decoration-gray-500">
-                Surat Balasan
-                <div className="underline dark:text-white decoration-gray-500">
-                  ID Card
-                </div>
-              </td>
-            </tr>
             <tr className="bg-white dark:bg-gray-800">
               <th
                 scope="row"
@@ -69,8 +43,12 @@ const StatusPeserta = () => {
               <td className="px-6 py-4 text-center dark:text-white">
                 {status}
               </td>
-              <td className="px-6 py-4 text-center underline dark:text-white decoration-gray-500">
-                Surat Balasan
+              <td>
+                <a
+                  onClick={handleGetStarted}
+                  className="px-6 py-4 text-center underline hover:text-gray-700 dark:text-white decoration-gray-500">
+                  Surat Balasan
+                </a>
               </td>
             </tr>
           </tbody>
@@ -86,6 +64,7 @@ const StatusPeserta = () => {
         rows="4"
         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="pesan kosong"></textarea>
+    </div>
     </div>
   );
 };

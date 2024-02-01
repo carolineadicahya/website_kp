@@ -1,4 +1,5 @@
 import { React } from "react";
+import NavigationBar from "../components/navbar";
 
 const ProfilPeserta = () => {
   var nama = "Almaditha Dara Tivani";
@@ -9,6 +10,8 @@ const ProfilPeserta = () => {
   var periode = "11 Desember 2023 - 10 Februari 2024";
 
   return (
+    <div>
+      <NavigationBar role="peserta" />
     <div className="mt-10 rounded-sm border border-stroke bg-white px-5 dark:bg-gray-700 pt-6 pb-2.5 shadow-default dark:border-gray-700 dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
         Profil
@@ -72,6 +75,7 @@ const ProfilPeserta = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 };

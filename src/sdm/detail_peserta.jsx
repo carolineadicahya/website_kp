@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import NavigationBar from "../components/navbar";
 
 const SDMDetail = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const SDMDetail = () => {
   var keterangan = "diterima tapi pangkas waktunya";
 
   return (
+    <div>
+      <NavigationBar role="sdm_sekretaris" />
     <div className="mt-28 mb-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-gray-800 dark:bg-gray-800 dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-left text-xl font-semibold text-black dark:text-white">
         Detail {nama}
@@ -126,6 +129,7 @@ const SDMDetail = () => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };

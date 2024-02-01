@@ -1,209 +1,261 @@
+// Import useState dan useNavigate dari react-router-dom
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
+import NavigationBar from "../../components/navbar";
 
 const DataPendidikan = () => {
+  // Menggunakan useNavigate untuk navigasi
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState("");
 
+  // State untuk menyimpan nilai dari form
+  const [selectedOption, setSelectedOption] = useState("");
+  const [tingkatPendidikan, setTingkatPendidikan] = useState("");
+  const [institusi, setInstitusi] = useState("");
+  const [jurusan, setJurusan] = useState("");
+  const [programStudi, setProgramStudi] = useState("");
+  const [nomorInduk, setNomorInduk] = useState("");
+
+  // Fungsi untuk menangani perubahan pada input kategori pendidikan
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
+  // Fungsi untuk menangani saat tombol "Get Started" diklik
   const handleGetStarted = () => {
     navigate("/data_magang");
   };
 
+  // Fungsi untuk menangani saat form disubmit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Mendapatkan token dari localStorage
+      const token = localStorage.getItem("token");
+
+      // Objek requestBody dengan nilai-nilai dari form
+      let requestBody = {
+        kategori_pendidikan: selectedOption,
+        tingkat_pendidikan: tingkatPendidikan,
+        institusi: institusi,
+        jurusan: jurusan,
+        program_studi: programStudi,
+        nomor_induk: nomorInduk,
+      };
+
+      // Kirim permintaan POST ke backend dengan menggunakan fetch
+      const response = await fetch("http://localhost:8000/peserta/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      // Jika respons tidak ok, lemparkan error
+      if (!response.ok) {
+        throw new Error("Gagal menyimpan data pendidikan");
+      }
+
+      // Jika sukses, navigasikan pengguna ke halaman data magang
+      navigate("/data_magang");
+    } catch (error) {
+      console.error("Terjadi kesalahan:", error.message);
+      // Tangani kesalahan, misalnya tampilkan pesan kepada pengguna
+    }
+  };
+
   return (
-    <div className="mt-20">
-      <CustomStepper activeStep={1} />
-      <form action="">
-        <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">
-          Data Pendidikan
-        </h3>
-        <div className="grid gap-4 mb-4">
-          <div className="text-left">
-            {/* Kategori Pendidikan */}
-            <label
-              htmlFor="kategori_pendidikan"
-              className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Kategori Pendidikan
-            </label>
-            <select
-              name="options"
-              id="options"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              value={selectedOption}
-              onChange={handleChange}>
-              <option value="">Pilih Jenis Pendidikan</option>
-              <option value="Mahasiswa">Mahasiswa</option>
-              <option value="Pelajar">Pelajar</option>
-            </select>
-          </div>
-
-          {selectedOption === "Mahasiswa" && (
-            <form>
-              {/* Tingkat Pendidikan */}
+    <div>
+      <NavigationBar role="peserta" />
+      <div className="mt-20">
+        <CustomStepper activeStep={1} />
+        <form onSubmit={handleSubmit}>
+          <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">
+            Data Pendidikan
+          </h3>
+          <div className="grid gap-4 mb-4">
+            <div className="text-left">
               <label
-                htmlFor=""
+                htmlFor="kategori_pendidikan"
                 className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Tingkat Pendidikan
+                Kategori Pendidikan
               </label>
               <select
-                name=""
-                id=""
-                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="">Pilih Tingkat Pendidikan</option>
-                <option value="">D3</option>
-                <option value="">D4</option>
-                <option value="">S1</option>
-                <option value="">S2</option>
-                <option value="">S3</option>
-              </select>
-              <div />
-
-              {/* Institusi */}
-              <label
-                htmlFor=""
-                className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Institusi
-              </label>
-              <input
-                type="text"
-                name=""
-                id=""
-                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="contoh: Institut Teknologi Sepuluh November"
-              />
-              <div />
-
-              {/* Fakultas */}
-              <label
-                htmlFor=""
-                className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Fakultas/Jurusan
-              </label>
-              <input
-                type="text"
-                name=""
-                id=""
-                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="contoh: Fakultas Teknik Industri"
-              />
-              <div />
-
-              {/* Prodi */}
-              <label
-                htmlFor=""
-                className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Program Studi
-              </label>
-              <input
-                type="text"
-                name=""
-                id=""
-                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="contoh: Teknik Mesin"
-              />
-              <div />
-
-              {/* NIM */}
-              <label
-                htmlFor=""
-                className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Nomor Induk Mahasiswa
-              </label>
-              <input
-                type="text"
-                name=""
-                id=""
+                name="options"
+                id="options"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="contoh: 1122334455"
-              />
-            </form>
-          )}
-
-          {selectedOption === "Pelajar" && (
-            <form>
-              {/* Tingkat Pendidikan */}
-              <label
-                htmlFor=""
-                className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Tingkat Pendidikan
-              </label>
-              <select
-                name=""
-                id=""
-                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="">Pilih Tingkat Pendidikan</option>
-                <option value="">SMK</option>
+                value={selectedOption}
+                onChange={handleChange}>
+                <option value="">Pilih Jenis Pendidikan</option>
+                <option value="Mahasiswa">Mahasiswa</option>
+                <option value="Pelajar">Pelajar</option>
               </select>
-              <div />
+            </div>
 
-              {/* Sekolah */}
-              <label
-                htmlFor=""
-                className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Sekolah
-              </label>
-              <select
-                name=""
-                id=""
-                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="">Pilih Sekolah</option>
-                <option value="">SMKN 7 SAMARINDA</option>
-                <option value="">SMA 10 SAMARINDA</option>
-              </select>
-              <div />
+            {selectedOption === "Mahasiswa" && (
+              <div>
+                <label
+                  htmlFor="tingkat_pendidikan"
+                  className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Tingkat Pendidikan
+                </label>
+                <select
+                  name="tingkat_pendidikan"
+                  id="tingkat_pendidikan"
+                  className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value={tingkatPendidikan}
+                  onChange={(e) => setTingkatPendidikan(e.target.value)}>
+                  <option value="">Pilih Tingkat Pendidikan</option>
+                  <option value="D3">D3</option>
+                  <option value="D4">D4</option>
+                  <option value="S1">S1</option>
+                  <option value="S2">S2</option>
+                  <option value="S3">S3</option>
+                </select>
 
-              {/* Jurusan */}
-              <label
-                htmlFor=""
-                className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Jurusan
-              </label>
-              <select
-                name=""
-                id=""
-                className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="">Pilih Jurusan</option>
-                <option value="">Rekayasa Perangkat Lunak</option>
-                <option value="">Teknik Komputer Jaringan</option>
-                <option value="">Lainnya</option>
-              </select>
-              <div />
+                <label
+                  htmlFor="institusi"
+                  className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Institusi
+                </label>
+                <input
+                  type="text"
+                  name="institusi"
+                  id="institusi"
+                  value={institusi}
+                  onChange={(e) => setInstitusi(e.target.value)}
+                  className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="contoh: Institut Teknologi Sepuluh November"
+                />
 
-              {/* NIS */}
-              <label
-                htmlFor=""
-                className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Nomor Induk Siswa
-              </label>
-              <input
-                type="text"
-                name=""
-                id=""
-                className="bg-gray-50 border mb-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="contoh: 1122334455"
-              />
-            </form>
-          )}
-        </div>
-        <div className="flex justify-between">
-          <a
-            onClick={() => navigate(-1)}
-            // type="submit"
-            className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-            Kembali
-          </a>
-          <button
-            onClick={handleGetStarted}
-            // type="submit"
-            className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Selanjutnya: Data Magang
-          </button>
-        </div>
-      </form>
+                <label
+                  htmlFor="jurusan"
+                  className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Fakultas/Jurusan
+                </label>
+                <input
+                  type="text"
+                  name="jurusan"
+                  id="jurusan"
+                  value={jurusan}
+                  onChange={(e) => setJurusan(e.target.value)}
+                  className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="contoh: Fakultas Teknik Industri"
+                />
+
+                <label
+                  htmlFor="program_studi"
+                  className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Program Studi
+                </label>
+                <input
+                  type="text"
+                  name="program_studi"
+                  id="program_studi"
+                  value={programStudi}
+                  onChange={(e) => setProgramStudi(e.target.value)}
+                  className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="contoh: Teknik Mesin"
+                />
+
+                <label
+                  htmlFor="nomor_induk"
+                  className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Nomor Induk Mahasiswa
+                </label>
+                <input
+                  type="text"
+                  name="nomor_induk"
+                  id="nomor_induk"
+                  value={nomorInduk}
+                  onChange={(e) => setNomorInduk(e.target.value)}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="contoh: 1122334455"
+                />
+              </div>
+            )}
+
+            {selectedOption === "Pelajar" && (
+              <div>
+                <label
+                  htmlFor="tingkat_pendidikan"
+                  className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Tingkat Pendidikan
+                </label>
+                <select
+                  name="tingkat_pendidikan"
+                  id="tingkat_pendidikan"
+                  value={tingkatPendidikan}
+                  onChange={(e) => setTingkatPendidikan(e.target.value)}
+                  className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option value="">Pilih Tingkat Pendidikan</option>
+                  <option value="SMK">SMK</option>
+                </select>
+
+                <label
+                  htmlFor="institusi"
+                  className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Sekolah
+                </label>
+                <input
+                  type="text"
+                  name="institusi"
+                  id="institusi"
+                  value={institusi}
+                  onChange={(e) => setInstitusi(e.target.value)}
+                  className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="contoh: SMKN 7 Balikpapan"
+                />
+
+                <label
+                  htmlFor="jurusan"
+                  className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Jurusan
+                </label>
+                <input
+                  type="text"
+                  name="jurusan"
+                  id="jurusan"
+                  value={jurusan}
+                  onChange={(e) => setJurusan(e.target.value)}
+                  className="bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="contoh: Teknik Mesin"
+                />
+
+                <label
+                  htmlFor="nomor_induk"
+                  className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Nomor Induk Siswa
+                </label>
+                <input
+                  type="text"
+                  name="nomor_induk"
+                  id="nomor_induk"
+                  value={nomorInduk}
+                  onChange={(e) => setNomorInduk(e.target.value)}
+                  className="bg-gray-50 border mb-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="contoh: 1122334455"
+                />
+              </div>
+            )}
+          </div>
+          <div className="mb-4 flex justify-between">
+            <a
+              onClick={() => navigate(-1)}
+              className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+              Kembali
+            </a>
+            <button
+              onClick={handleGetStarted}
+              className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Selanjutnya: Data Magang
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
