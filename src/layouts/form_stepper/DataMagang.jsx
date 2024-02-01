@@ -6,6 +6,11 @@ import Datepicker from "react-tailwindcss-datepicker";
 
 const DataMagang = () => {
   const navigate = useNavigate();
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   const [dateRange, setDateRange] = useState({
     startDate: null,
@@ -38,13 +43,16 @@ const DataMagang = () => {
             <select
               name="departemen"
               id="departemen"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={selectedOption}
+              onChange={handleChange}>
               <option value="">Pilih Departemen</option>
-              <option value="">IT</option>
-              <option value="">Farmasi</option>
-              <option value="">Teknik</option>
-              <option value="">Keuangan</option>
-              <option value="">SDM</option>
+              <option value="IT">IT</option>
+              <option value="Teknik">Teknik</option>
+              <option value="SDM">SDM</option>
+              <option value="Keuangan">Keuangan</option>
+              <option value="Farmasi">Farmasi</option>
+              <option value="Gizi">Gizi</option>
             </select>
           </div>
 
@@ -55,15 +63,68 @@ const DataMagang = () => {
               className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Bidang Minat
             </label>
-            <select
-              name="bidang_minat"
-              id="bidang_minat"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option value="">Pilih Bidang Minat</option>
-              <option value="">Sofware</option>
-              <option value="">Hardware</option>
-              <option value="">Kelistrikan</option>
-            </select>
+
+            {/* IT */}
+            {selectedOption === "IT" && (
+              <select
+                name="bidang_minat"
+                id="bidang_minat"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="">Pilih Bidang Minat</option>
+                <option value="">Sofware</option>
+                <option value="">Hardware</option>
+              </select>
+            )}
+
+            {/* Teknik */}
+            {selectedOption === "Teknik" && (
+              <select
+                name="bidang_minat"
+                id="bidang_minat"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="">Pilih Bidang Minat</option>
+                <option value="">Sipil</option>
+                <option value="">Listrik</option>
+                <option value="">Elektromedik</option>
+                <option value="">Teknik Pendingin</option>
+                <option value="">Telekomunikasi</option>
+              </select>
+            )}
+
+            {/* SDM */}
+            {selectedOption === "SDM" && (
+              <select>
+                <option value="">Pilih Bidang Minat</option>
+                <option value="">Human Resource</option>
+              </select>
+            )}
+
+            {/* Keuangan */}
+            {selectedOption === "Keuangan" && (
+              <select>
+                <option value="">Pilih Bidang Minat</option>
+                <option value="">Treasury</option>
+                <option value="">Piutang</option>
+                <option value="">Controller</option>
+              </select>
+            )}
+
+            {/* Farmasi */}
+            {selectedOption === "Farmasi" && (
+              <select>
+                <option value="">Pilih Bidang Minat</option>
+                <option value="">Apotek</option>
+                <option value="">Gudang</option>
+              </select>
+            )}
+
+            {/* Gizi */}
+            {selectedOption === "Gizi" && (
+              <select>
+                <option value="">Pilih Bidang Minat</option>
+                <option value="">Gizi</option>
+              </select>
+            )}
           </div>
 
           {/* durasi magang */}
