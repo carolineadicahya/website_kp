@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { exportToExcel } from "react-easy-export";
 
 import gambar1 from "../assets/gambar1.jpg";
 import gambar2 from "../assets/gambar2.jpg";
@@ -12,12 +13,28 @@ const SDM = () => {
     navigate("/detail_peserta");
   };
 
-  var nama = [];
-  var institusi = [];
-  var jurusan_fakultas = [];
-  var prodi = [];
-  var durasi = [];
-  var periode = [];
+  const dataPeserta = [
+    ["Nama", "Tingkat Pendidikan", "Institusi", "Department", "Periode"],
+    [
+      "Almaditha Dara",
+      "S1",
+      "ITK",
+      "IT",
+      "11 Desember 2023 - 10 Februari 2024",
+    ],
+    [
+      "Caroline Adi Cahya",
+      "S1",
+      "ITK",
+      "IT",
+      "11 Desember 2023 - 10 Februari 2024",
+    ],
+    ["Anisya Indra", "S1", "ITK", "IT", "08 Januari - 10 Februari"],
+  ];
+
+  const handleExportToExcel = () => {
+    exportToExcel(dataPeserta, "data_peserta.xls");
+  };
 
   return (
     <div className="mt-10 rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-gray-800 dark:bg-gray-800 dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -180,7 +197,7 @@ const SDM = () => {
               </th>
               <td className="text-center px-6 py-4">S1</td>
               <td className="text-center px-6 py-4">ITK</td>
-              <td className="text-center px-6 py-4">Software</td>
+              <td className="text-center px-6 py-4">IT</td>
               <td className="text-center px-6 py-4">
                 11 Desember 2023 - 10 Februari 2024
               </td>
@@ -219,7 +236,7 @@ const SDM = () => {
               </th>
               <td className="text-center px-6 py-4">S1</td>
               <td className="text-center px-6 py-4">ITK</td>
-              <td className="text-center px-6 py-4">Software</td>
+              <td className="text-center px-6 py-4">IT</td>
               <td className="text-center px-6 py-4">
                 11 Desember 2023 - 10 Februari 2024
               </td>
@@ -255,7 +272,7 @@ const SDM = () => {
               </th>
               <td className="text-center px-6 py-4">S1</td>
               <td className="text-center px-6 py-4">ITK</td>
-              <td className="text-center px-6 py-4">Bisnis IT</td>
+              <td className="text-center px-6 py-4">IT</td>
               <td className="text-center px-6 py-4">
                 08 Januari - 10 Februari
               </td>
@@ -283,7 +300,9 @@ const SDM = () => {
           </div>
         </div>
         <div className="flex justify-end  mt-2 mb-2 mr-2">
-          <button className="bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 rounded-md">
+          <button
+            onClick={handleExportToExcel}
+            className="bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 rounded-md">
             Export Excel
           </button>
         </div>
