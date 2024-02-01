@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,23 +11,29 @@ const Login = () => {
     navigate("/dashboard");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const storedEmail = localStorage.getItem("email");
-      const storedPassword = localStorage.getItem("password");
-
+      // Check if email and password are not null
       if (!email || !password) {
         throw new Error("Email dan password harus diisi!");
       }
-      if (email === storedEmail && password === storedPassword) {
-        localStorage.setItem("islogin", true);
+
+      // Panggil API login
+      const response = await axios.post('http://localhost:8000/user/login', {
+        email: email,
+        password: password
+      });
+
+      // Cek status respons
+      if (response.status === 200) {
+        // Login berhasil, alihkan ke halaman dashboard
         handleGetStarted();
         window.location.reload();
         window.alert("Login Sukses");
       } else {
-        window.alert("Email atau password tidak valid!");
+        throw new Error("Login gagal");
       }
     } catch (error) {
       window.alert("Terdapat kesalahan saat login: " + error.message);

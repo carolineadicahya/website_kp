@@ -4,28 +4,38 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       // Check if email and password are not null
       if (!email || !password) {
-        throw window.alert("Email dan password harus diisi!");
+        throw new Error("Email dan password harus diisi!");
       }
 
-      // Store user data in local storage
+      // Panggil API register
+      const response = await fetch("http://localhost:8000/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
 
-      localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
-      localStorage.setItem("islogin", false);
-
-      // window.alert("Registrasi Sukses");
-      navigate("/login");
+      // Cek status respons
+      if (response.ok) {
+        // Registrasi berhasil, alihkan ke halaman login
+        navigate("/login");
+      } else {
+        throw new Error("Registrasi gagal");
+      }
     } catch (error) {
-      window.alert("Terdapat kesalahan saat registrasi", error.message);
+      alert("Terdapat kesalahan saat registrasi: " + error.message);
     }
   };
 
