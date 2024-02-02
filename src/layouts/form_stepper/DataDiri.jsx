@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
 import NavigationBar from "../../components/navbar";
-import { useFormData } from "../../context/FormDataContext";
+
 
 const DataDiri = () => {
   const [nama, setNama] = useState("");
@@ -11,15 +11,8 @@ const DataDiri = () => {
   const [noWhatsapp, setNoWhatsapp] = useState("");
   const [jenisKelamin, setJenisKelamin] = useState("");
   const [errorText, setErrorText] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [isDataSaved, setIsDataSaved] = useState(false);
-
-  
-
-  const {formData, setFormData} = useFormData();
   const navigate = useNavigate();
   
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -28,17 +21,8 @@ const DataDiri = () => {
       else {
         setErrorText("");
       try {
-        // Simpan data formulir ke dalam konteks
-        setFormData({
-          nama: nama,
-          alamat: alamat,
-          no_whatsapp: noWhatsapp,
-          tempat_tanggal_lahir: tempatTanggalLahir,
-          jenis_kelamin: jenisKelamin
-        });
-        setIsDataSaved(true);
-
-        localStorage.setItem("islogin", true);
+        // Simpan data formulir
+        localStorage.setItem("dataDiri", JSON.stringify({ nama, tempatTanggalLahir, alamat, noWhatsapp, jenisKelamin }));
         navigate("/data_pendidikan");
       } catch (error) {
         console.error('Terjadi kesalahan:', error.message);
@@ -47,10 +31,6 @@ const DataDiri = () => {
     }
   };
 
-  // Fungsi untuk mengecek apakah semua kolom telah diisi
-  const checkFormValidity = () => {
-    return !(!nama || !alamat || !noWhatsapp || !tempatTanggalLahir || !jenisKelamin);
-  };
 
   // Fungsi untuk menangani perubahan input dan memperbarui status formulir
   const handleInputChange = (e) => {
@@ -66,29 +46,30 @@ const DataDiri = () => {
     setJenisKelamin(e.target.value);
   };
 
-  const handleGetStarted = () => {
-    if (!nama) {
-      document.getElementById('fullname-error').innerText = 'Kolom ini harus diisi';
-    }
-    if (!tempatTanggalLahir) {
-      document.getElementById('text-error').innerText = 'Kolom ini harus diisi';
-    }
-    if (!alamat) {
-      document.getElementById('alamat-error').innerText = 'Kolom ini harus diisi';
-    }
-    if (!noWhatsapp) {
-      document.getElementById('whatsapp-error').innerText = 'Kolom ini harus diisi';
-    }
-    if (!jenisKelamin) {
-      document.getElementById('gender-error').innerText = 'Pilih salah satu jenis kelamin';
-    }
-    if (isDataSaved) {
-      navigate("/data_pendidikan");
-    } else {
-      // Tambahkan pesan atau tindakan yang sesuai jika data belum disimpan
-      console.log("Mohon isi semua data dan simpan sebelum melanjutkan.");
-    }
-  };
+  // const handleGetStarted = () => {
+  //   setErrorText(""); // Menghapus pesan kesalahan sebelum memeriksa input
+  
+  //   if (!nama) {
+  //     setErrorText("Kolom Nama Lengkap harus diisi");
+  //     return;
+  //   }
+  //   if (!tempatTanggalLahir) {
+  //     setErrorText("Kolom Tempat, Tanggal Lahir harus diisi");
+  //     return;
+  //   }
+  //   if (!alamat) {
+  //     setErrorText("Kolom Alamat harus diisi");
+  //     return;
+  //   }
+  //   if (!noWhatsapp) {
+  //     setErrorText("Kolom Nomor Whatsapp harus diisi");
+  //     return;
+  //   }
+  //   if (!jenisKelamin) {
+  //     setErrorText("Pilih salah satu jenis kelamin");
+  //     return;
+  //   }
+  // };
   
 
   return (
@@ -205,8 +186,8 @@ const DataDiri = () => {
         <div className=" flex justify-end">
           {errorText && <p className="text-red-500 text-sm mb-2">{errorText}</p>}
           <button
-            onClick={handleGetStarted}
-            type="button"
+            // onClick={handleSubmit}
+            type="submit"
             className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           Selanjutnya: Data Pendidikan
           </button>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
 import NavigationBar from "../../components/navbar";
+import { data } from "autoprefixer";
 
 const DataLampiran = () => {
   const navigate = useNavigate();
@@ -16,18 +17,58 @@ const DataLampiran = () => {
     setFilePasFoto(event.target.files[0]);
   };
 
-  const handleGetStarted = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
     try {
+      // Mendapatkan token dari localStorage
+      const token = localStorage.getItem("token");
+      const dataDiri = JSON.parse( localStorage.getItem("dataDiri"))
+      const dataPendidikan = JSON.parse(localStorage.getItem("dataPendidikan"))
+      const dataMagang = JSON.parse( localStorage.getItem("dataMagang"))
+      // Objek requestBody dengan nilai-nilai dari form
+      console.log(dataDiri.nama)
+      let requestBody = {
+        // dataDiri
+        nama: dataDiri.nama,
+        alamat: dataDiri.alamat,
+        no_whatsapp: dataDiri.noWhatsapp,
+        tempat_tanggal_lahir: dataDiri.tempatTanggalLahir,
+        jenis_kelamin: dataDiri.jenisKelamin,
+        
+        // dataPendidikan
+        kategori_pendidikan: dataPendidikan.selectedOption,
+        tingkat_pendidikan: dataPendidikan.tingkatPendidikan,
+        institusi: dataPendidikan.institusi,
+        jurusan: dataPendidikan.jurusan,
+        program_studi: dataPendidikan.programStudi,
+        nomor_induk: dataPendidikan.nomorInduk,
+
+        // dataMagang
+        durasi_magang: dataMagang.durasi_magang,
+        tanggal_mulai: dataMagang.startDate,
+        tanggal_selesai: dataMagang.endDate,
+        departemen_magang: dataMagang.departemen,
+        bidang_minat: dataMagang.bidang_minat
+        
+      };
+      
       const formData = new FormData();
       formData.append("pdfFile", fileSuratPengantar);
       formData.append("imageFile", filePasFoto);
-
-      const response = await fetch("/api/uploadLampiran", {
+      Object.entries(requestBody).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+      const response = await fetch("http://localhost:8000/peserta/add", {
         method: "POST",
-        body: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }, 
+        body: formData
       });
 
       if (response.ok) {
+        window.alert("Selamat! Data kamu terkirim! Silahkan tunggu status selanjutnya!");
         navigate("/dashboard");
       } else {
         const data = await response.json();
@@ -45,7 +86,7 @@ const DataLampiran = () => {
       <NavigationBar role="peserta" />
       <div className="mt-20">
         <CustomStepper activeStep={3} />
-        <form>
+        <form onSubmit={handleSubmit}>
           <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">
             Lampiran
           </h3>
@@ -66,7 +107,7 @@ const DataLampiran = () => {
               <p
                 className="mt-1 text-left text-sm text-gray-500 dark:text-gray-300"
                 id="surat_pengantar_input_help">
-                SVG, PNG, JPG or GIF (MAX. 800x400px).
+                PDF (MAX. 5MB).
               </p>
             </div>
             <div>
@@ -96,8 +137,8 @@ const DataLampiran = () => {
               Kembali
             </a>
             <button
-              type="button"
-              onClick={handleGetStarted}
+              type="submit"
+              // onClick={handleGetStarted}
               className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Kirim
             </button>

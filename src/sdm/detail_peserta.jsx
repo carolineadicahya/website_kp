@@ -5,9 +5,9 @@ import NavigationBar from "../components/navbar";
 const SDMDetail = () => {
   const navigate = useNavigate();
 
-  const handleGetStarted = () => {
-    navigate("/surat_balasan");
-  };
+  // const handleGetStarted = () => {
+  //   navigate("/surat_balasan");
+  // };
 
   var nama = "Almaditha Dara Tivani";
   var institusi = "Institut Teknologi Kalimanatan";
@@ -100,14 +100,22 @@ const SDMDetail = () => {
           </h4>
           <div className="items-left">
             <button
-              onClick={handleGetStarted}
+              // onClick={handleGetStarted}
+              type=""
               className="bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-6 rounded-md">
               Terima
             </button>
             <button
-              onClick={handleGetStarted}
+              // onClick={handleGetStarted}
+              type=""
               className="bg-red-500 text-white px-2 py-1 mb-6 rounded-md hover:bg-red-600">
               Tolak
+            </button>
+            <button
+              // onClick={handleGetStarted}
+              type=""
+              className="bg-green-500 text-white px-2 py-1 mb-6 rounded-md hover:bg-green-600">
+              Whatsapp
             </button>
           </div>
         </div>

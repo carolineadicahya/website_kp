@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
 import NavigationBar from "../../components/navbar";
-import Datepicker from "react-tailwindcss-datepicker";
+// import { useFormData } from "../../context/FormDataContext";
 
 const DataMagang = () => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedInterest, setSelectedInterest] = useState("");
   const [durasiMagang, setDurasiMagang] = useState("");
-  const [dateRange, setDateRange] = useState({ startDate: null, endDate: null });
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
+
+  // const [dateRange, setDateRange] = useState({ startDate: null, endDate: null });
+  const [errorText, setErrorText] = useState(""); 
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -23,45 +27,45 @@ const DataMagang = () => {
     setDurasiMagang(event.target.value);
   };
 
-  const handleDateChange = (newValue) => {
-    setDateRange(newValue);
-  };
-
-  // Fungsi untuk menangani saat tombol "Get Started" diklik
-  const handleGetStarted = () => {
-    navigate("/lampiran");
+  const handleStartChange = (event) => {
+    setStartDate(event.target.value);
   };
   
+  const handleEndChange = (event) => {
+    setEndDate(event.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:8000/peserta/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          departemen: selectedOption,
-          bidang_minat: selectedInterest,
-          durasi_magang: durasiMagang,
-          startDate: dateRange.startDate,
-          endDate: dateRange.endDate,
-          // tambahkan data formulir lainnya yang diperlukan oleh backend
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Gagal menyimpan data pendidikan");
-      }
-
-      // Jika sukses, navigasikan pengguna ke halaman data magang
-      navigate("/lampiran");
-    } catch (error) {
-      console.error("Terjadi kesalahan:", error.message);
-      // Tangani kesalahan, misalnya tampilkan pesan kepada pengguna
+    if (!selectedOption || !selectedInterest || !durasiMagang || !startDate || !endDate) {
+      setErrorText("Harap lengkapi semua kolom.");
+      return;
     }
+
+    // let startDate = null;
+    // let endDate = null;
+
+    // if (dateRange.startDate instanceof Date) {
+    //   startDate = dateRange.startDate.toISOString().split('T')[0];
+    // }
+
+    // if (dateRange.endDate instanceof Date) {
+    //   endDate = dateRange.endDate.toISOString().split('T')[0];
+    // }
+
+    // konversikan tanggal ke format yyyy-mm-dd
+    // const startDateString = startDate instanceof Date ? startDate.toISOString().split('T')[0] : "";
+    // const endDateString = endDate instanceof Date ? endDate.toISOString().split('T')[0] : "";
+
+    localStorage.setItem("dataMagang", JSON.stringify(
+    {departemen: selectedOption,
+      bidang_minat: selectedInterest,
+      durasi_magang: durasiMagang,
+      startDate: startDate,
+      endDate: endDate
+    }));
+      navigate("/lampiran");
   };
 
   return (
@@ -215,17 +219,15 @@ const DataMagang = () => {
                   className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Tanggal Mulai
                 </label>
-                <Datepicker
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  useRange={false}
-                  asSingle={true}
-                  displayFormat="DD/MM/YYYY"
-                  value={dateRange.startDate}
-                  onChange={(newValue) =>
-                    handleDateChange({ ...dateRange, startDate: newValue })
-                  }
+                <input
                   type="date"
-                  placeholder="Masukkan Tanggal"
+                  name="tanggal_mulai"
+                  id="tanggal_mulai"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="dd-mm-yyyy"
+                  value={startDate}
+                  onChange={handleStartChange}
+                  required=""
                 />
               </div>
 
@@ -236,16 +238,15 @@ const DataMagang = () => {
                   className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Tanggal Selesai
                 </label>
-                <Datepicker
-                  useRange={false}
-                  asSingle={true}
-                  displayFormat="DD/MM/YYYY"
-                  value={dateRange.endDate}
-                  onChange={(newValue) =>
-                    handleDateChange({ ...dateRange, endDate: newValue })
-                  }
-                  type="date"
-                  placeholder="Masukkan Tanggal"
+                <input
+                type="date"
+                  name="tanggal_selesai"
+                  id="tanggal_selesai"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="dd-mm-yyyy"
+                  value={endDate}
+                  onChange={handleEndChange}
+                  required=""
                 />
               </div>
             </div>
@@ -257,7 +258,7 @@ const DataMagang = () => {
               Kembali
             </a>
             <button
-              onClick={handleGetStarted}
+              type="submit"
               className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Selanjutnya: Lampiran
             </button>

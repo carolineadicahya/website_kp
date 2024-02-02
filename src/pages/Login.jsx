@@ -32,6 +32,11 @@ const Login = () => {
         handleGetStarted();
         window.location.reload();
         window.alert("Login Sukses");
+
+        // Simpan status login ke local storage
+      localStorage.setItem("islogin", "true");
+      localStorage.setItem("email", email);
+      localStorage.setItem("token", response.data.jwt);
       } else {
         throw new Error("Login gagal");
       }

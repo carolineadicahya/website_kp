@@ -15,57 +15,36 @@ const DataPendidikan = () => {
   const [jurusan, setJurusan] = useState("");
   const [programStudi, setProgramStudi] = useState("");
   const [nomorInduk, setNomorInduk] = useState("");
+  const [errorText, setErrorText] = useState("");
+
 
   // Fungsi untuk menangani perubahan pada input kategori pendidikan
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
-  // Fungsi untuk menangani saat tombol "Get Started" diklik
-  const handleGetStarted = () => {
-    navigate("/data_magang");
-  };
-
   // Fungsi untuk menangani saat form disubmit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      // Mendapatkan token dari localStorage
-      const token = localStorage.getItem("token");
+    if (!selectedOption || !tingkatPendidikan || !institusi || !jurusan || !nomorInduk) {
+      setErrorText("Harap lengkapi semua kolom.");
+    }
+      else {
+        setErrorText("");
+      try {
+        // Simpan data formulir
+        localStorage.setItem("dataPendidikan", JSON.stringify({ selectedOption, tingkatPendidikan, institusi, jurusan, programStudi, nomorInduk }));
+        navigate("/data_magang");
+      } catch (error) {
+        console.error('Terjadi kesalahan:', error.message);
 
-      // Objek requestBody dengan nilai-nilai dari form
-      let requestBody = {
-        kategori_pendidikan: selectedOption,
-        tingkat_pendidikan: tingkatPendidikan,
-        institusi: institusi,
-        jurusan: jurusan,
-        program_studi: programStudi,
-        nomor_induk: nomorInduk,
-      };
-
-      // Kirim permintaan POST ke backend dengan menggunakan fetch
-      const response = await fetch("http://localhost:8000/peserta/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      // Jika respons tidak ok, lemparkan error
-      if (!response.ok) {
-        throw new Error("Gagal menyimpan data pendidikan");
+        // Tangani kesalahan, misalnya tampilkan pesan kepada pengguna
       }
-
-      // Jika sukses, navigasikan pengguna ke halaman data magang
-      navigate("/data_magang");
-    } catch (error) {
-      console.error("Terjadi kesalahan:", error.message);
-      // Tangani kesalahan, misalnya tampilkan pesan kepada pengguna
     }
   };
+
+
 
   return (
     <div>
@@ -84,8 +63,8 @@ const DataPendidikan = () => {
                 Kategori Pendidikan
               </label>
               <select
-                name="options"
-                id="options"
+                name="kategori_pendidikan"
+                id="kategori_pendidikan"                
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 value={selectedOption}
                 onChange={handleChange}>
@@ -249,7 +228,8 @@ const DataPendidikan = () => {
               Kembali
             </a>
             <button
-              onClick={handleGetStarted}
+            type="submit"
+              // onClick={handleGetStarted}
               className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Selanjutnya: Data Magang
             </button>
