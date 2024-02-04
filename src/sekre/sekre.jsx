@@ -1,24 +1,18 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { exportToExcel } from "react-easy-export";
 import NavigationBar from "../components/navbar";
 import axios from "axios";
 
-import gambar1 from "../assets/gambar1.jpg";
-import gambar2 from "../assets/gambar2.jpg";
-import gambar4 from "../assets/gambar4.jpg";
 
 const Sekretaris = () => {
   const navigate = useNavigate();
   const [dataPeserta, setDataPeserta] = useState([]);
 
-  const handleGetStarted = () => {
-    navigate("/peserta_magang");
-  };
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("/bystatus"); // Assuming your API is properly configured
+      const response = await axios.get("http://localhost:8000/peserta/bystatus?status_pendaftaran=Dikirim"); // Assuming your API is properly configured
       setDataPeserta(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);

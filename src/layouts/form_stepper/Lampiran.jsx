@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CustomStepper from "../../components/stepper";
 import NavigationBar from "../../components/navbar";
 import { data } from "autoprefixer";
+import Loader from "../../components/loader";
 
 const DataLampiran = () => {
   const navigate = useNavigate();
@@ -142,6 +143,9 @@ const DataLampiran = () => {
               className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Kirim
             </button>
+            <div className="flex items-center justify-center">
+              <Loader />
+            </div>
           </div>
         </form>
       </div>

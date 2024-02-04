@@ -1,13 +1,40 @@
-import { React } from "react";
+import  React, {useState, useEffect } from "react";
 import NavigationBar from "../components/navbar";
+import Loader from "../components/loader";
 
 const ProfilPeserta = () => {
-  var nama = "Almaditha Dara Tivani";
-  var Institusi = "Institut Teknologi Kalimanatan";
-  var jurusan_fakultas = "Matematika dan Teknologi Informasi";
-  var prodi = "Informatika";
-  var durasi = "2 Bulan";
-  var periode = "11 Desember 2023 - 10 Februari 2024";
+  const [peserta, setPeserta] = useState(null);
+
+  useEffect(() => {
+    const fetchPesertaById = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        // Ganti URL dengan URL endpoint yang sesuai di backend Anda
+        const response = await fetch(`http://localhost:8000/user/token/${token}`, {
+          method: "GET",
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setPeserta(data); // Sesuaikan dengan struktur data yang diterima dari backend
+        } else {
+          throw new Error("Gagal mengambil data peserta");
+        }
+      } catch (error) {
+        console.error("Terjadi kesalahan:", error);
+      }
+    };
+
+    fetchPesertaById();
+  }, []);
+
+  if (!peserta) {
+    return <div>
+      <Loader />
+    </div>; // Tampilkan indikator loading saat data sedang dimuat
+  }
 
   return (
     <div>
@@ -26,7 +53,7 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Nama
               </th>
-              <td className="px-6 py-4 text-left dark:text-white">{nama}</td>
+              <td className="px-6 py-4 text-left dark:text-white">{peserta.data.Peserta[0].nama}</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -35,7 +62,7 @@ const ProfilPeserta = () => {
                 Institusi
               </th>
               <td className="px-6 py-4 text-left dark:text-white">
-                {Institusi}
+                {peserta.data.Peserta[0].institusi}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -45,7 +72,7 @@ const ProfilPeserta = () => {
                 Jurusan/Fakultas
               </th>
               <td className="px-6 py-4 text-left dark:text-white">
-                {jurusan_fakultas}
+                {peserta.data.Peserta[0].jurusan}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -54,7 +81,7 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Program Studi
               </th>
-              <td className="px-6 py-4 text-left dark:text-white">{prodi}</td>
+              <td className="px-6 py-4 text-left dark:text-white">{peserta.data.Peserta[0].program_studi}</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -62,7 +89,7 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Durasi
               </th>
-              <td className="px-6 py-4 text-left dark:text-white">{durasi}</td>
+              <td className="px-6 py-4 text-left dark:text-white">{peserta.data.Peserta[0].Pendaftarans[0].durasi_magang}</td>
             </tr>
             <tr className="bg-white dark:bg-gray-800">
               <th
@@ -70,7 +97,7 @@ const ProfilPeserta = () => {
                 className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Periode
               </th>
-              <td className="px-6 py-4 text-left dark:text-white">{periode}</td>
+              <td className="px-6 py-4 text-left dark:text-white">{peserta.data.Peserta[0].Pendaftarans[0].tanggal_mulai}-{peserta.data.Peserta[0].Pendaftarans[0].tanggal_selesai}</td>
             </tr>
           </tbody>
         </table>
