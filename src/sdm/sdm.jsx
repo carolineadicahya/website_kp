@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { exportToExcel } from "react-easy-export";
 import NavigationBar from "../components/navbar";
 
-import gambar1 from "../assets/gambar1.jpg";
-import gambar2 from "../assets/gambar2.jpg";
-import gambar4 from "../assets/gambar4.jpg";
+// import gambar1 from "../assets/gambar1.jpg";
+// import gambar2 from "../assets/gambar2.jpg";
+// import gambar4 from "../assets/gambar4.jpg";
 
 const SDM = () => {
   const navigate = useNavigate();
@@ -14,24 +14,30 @@ const SDM = () => {
     navigate("/detail_peserta");
   };
 
-  const dataPeserta = [
-    ["Nama", "Tingkat Pendidikan", "Institusi", "Department", "Periode"],
-    [
-      "Almaditha Dara",
-      "S1",
-      "ITK",
-      "IT",
-      "11 Desember 2023 - 10 Februari 2024",
-    ],
-    [
-      "Caroline Adi Cahya",
-      "S1",
-      "ITK",
-      "IT",
-      "11 Desember 2023 - 10 Februari 2024",
-    ],
-    ["Anisya Indra", "S1", "ITK", "IT", "08 Januari - 10 Februari"],
-  ];
+  const [dataPeserta, setDataPeserta] = useState([]);
+
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/pendaftaran/bystatus?status_pendaftaran=Direview`, {
+          method: "GET",
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setDataPeserta(data.data); // Sesuaikan dengan struktur data yang diterima dari backend
+        } else {
+          throw new Error("Gagal mengambil data peserta");
+        }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // Fetch data when the component mounts
+  }, []); // Empty dependency array ensures this effect runs once
 
   const handleExportToExcel = () => {
     exportToExcel(dataPeserta, "data_peserta.xls");
@@ -179,117 +185,26 @@ const SDM = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="w-4 p-4">
-                <div className="flex items-center"></div>
-              </td>
-              <th
-                scope="row"
-                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                <img
-                  className="w-10 h-10 rounded-full"
-                  src={gambar4}
-                  alt="Jese image"
-                />
-                <div className="ps-3">
-                  <div className="text-base font-semibold">Almaditha Dara</div>
-                  <div className="font-normal text-gray-500">
-                    alma.nyenye.com
-                  </div>
-                </div>
-              </th>
-              <td className="text-center px-6 py-4">S1</td>
-              <td className="text-center px-6 py-4">ITK</td>
-              <td className="text-center px-6 py-4">IT</td>
-              <td className="text-center px-6 py-4">
-                11 Desember 2023 - 10 Februari 2024
-              </td>
-              <td className="px-6 py-4">
-                {/* <!-- Modal toggle --> */}
-                <a
-                  type="button"
-                  onClick={handleGetStarted}
-                  data-modal-target="editUserModal"
-                  data-modal-show="editUserModal"
-                  className="text-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                  Detail
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          {dataPeserta.map((peserta, index) => (
+            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              {/* Render only the required data */}
               <td className="w-4 p-4">
                 <div className="flex items-center"></div>
               </td>
               <th
                 scope="row"
                 className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <img
-                  className="w-10 h-10 rounded-full"
-                  src={gambar1}
-                  alt="Jese image"
-                />
+                {/* Render the nama, tingkat pendidikan, institusi, and periode */}
                 <div className="ps-3">
-                  <div className="text-base font-semibold">
-                    Caroline Adi Cahya
-                  </div>
-                  <div className="font-normal text-gray-500">
-                    oyin.nyenye.com
-                  </div>
+                  <div className="text-base font-semibold">{peserta.Pesertum.nama}</div>
                 </div>
               </th>
-              <td className="text-center px-6 py-4">S1</td>
-              <td className="text-center px-6 py-4">ITK</td>
-              <td className="text-center px-6 py-4">IT</td>
-              <td className="text-center px-6 py-4">
-                11 Desember 2023 - 10 Februari 2024
-              </td>
-              <td className="px-6 py-4">
-                {/* <!-- Modal toggle --> */}
-                <a
-                  href="#"
-                  type="button"
-                  data-modal-show="editUserModal"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                  Detail
-                </a>
-              </td>
+              <td className="text-center px-6 py-4">{peserta.Pesertum.tingkat_pendidikan}</td>
+              <td className="text-center px-6 py-4">{peserta.Pesertum.institusi}</td>
+              <td className="text-center px-6 py-4">{peserta.departemen}</td>
+              <td className="text-center px-6 py-4">{peserta.periode}</td>
             </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="w-4 p-4">
-                <div className="flex items-center"></div>
-              </td>
-              <th
-                scope="row"
-                className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <img
-                  className="w-10 h-10 rounded-full"
-                  src={gambar2}
-                  alt="Jese image"
-                />
-                <div className="ps-3">
-                  <div className="text-base font-semibold">Anisya Indra </div>
-                  <div className="font-normal text-gray-500">
-                    alma.nyenye.com
-                  </div>
-                </div>
-              </th>
-              <td className="text-center px-6 py-4">S1</td>
-              <td className="text-center px-6 py-4">ITK</td>
-              <td className="text-center px-6 py-4">IT</td>
-              <td className="text-center px-6 py-4">
-                08 Januari - 10 Februari
-              </td>
-              <td className="px-6 py-4">
-                {/* <!-- Modal toggle --> */}
-                <a
-                  href="#"
-                  type="button"
-                  data-modal-show="editUserModal"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                  Detail
-                </a>
-              </td>
-            </tr>
+              ))}
           </tbody>
         </table>
         {/* <!-- Edit user modal --> */}

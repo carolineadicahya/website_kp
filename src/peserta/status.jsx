@@ -1,15 +1,39 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "../components/navbar";
 
 const StatusPeserta = () => {
   const navigate = useNavigate();
+  const [peserta, setPeserta] = useState(null);
+
+  useEffect(() => {
+    const fetchPesertaById = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        // Ganti URL dengan URL endpoint yang sesuai di backend Anda
+        const response = await fetch(`http://localhost:8000/user/token/${token}`, {
+          method: "GET",
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setPeserta(data); // Sesuaikan dengan struktur data yang diterima dari backend
+        } else {
+          throw new Error("Gagal mengambil data peserta");
+        }
+      } catch (error) {
+        console.error("Terjadi kesalahan:", error);
+      }
+    };
+
+    fetchPesertaById();
+  }, []);
 
   const handleGetStarted = () => {
     navigate("/profil");
   };
-
-  const status = "Diterima"
 
   return (
     <div>
@@ -41,12 +65,14 @@ const StatusPeserta = () => {
                 Pendaftaran
               </th>
               <td className="px-6 py-4 text-center dark:text-white">
-                {status}
+              {peserta && peserta.data && peserta.data.Peserta && peserta.data.Peserta[0] && peserta.data.Peserta[0].Pendaftarans && peserta.data.Peserta[0].Pendaftarans[0] && peserta.data.Peserta[0].Pendaftarans[0].status_pendaftaran}
               </td>
               <td>
                 <a
-                  onClick={handleGetStarted}
-                  className="px-6 py-4 text-center underline hover:text-gray-700 dark:text-white decoration-gray-500">
+                  href={peserta && peserta.data && peserta.data.Peserta && peserta.data.Peserta[0] && peserta.data.Peserta[0].Pendaftarans && peserta.data.Peserta[0].Pendaftarans[0] && peserta.data.Peserta[0].Pendaftarans[0].surat_balasan}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-4 text-center underline hover:text-gray-700 dark:text-white dark:hover:text-blue-500 decoration-gray-500">
                   Surat Balasan
                 </a>
               </td>
@@ -54,16 +80,16 @@ const StatusPeserta = () => {
           </tbody>
         </table>
       </div>
-      <label
-        htmlFor="message"
-        className="mt-10 block mb-2 text-left text-sm font-medium text-gray-900 dark:text-white">
-        Pesan
-      </label>
-      <textarea
-        id="message"
-        rows="4"
-        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="pesan kosong"></textarea>
+      <label htmlFor="message" 
+      className="mt-10 block mb-2 text-left text-sm font-medium text-gray-900 dark:text-white">
+        Pesan</label>
+    <textarea
+      id="message"
+      rows="4"
+      value={peserta && peserta.data && peserta.data.Peserta && peserta.data.Peserta[0] && peserta.data.Peserta[0].Pendaftarans && peserta.data.Peserta[0].Pendaftarans[0] && peserta.data.Peserta[0].Pendaftarans[0].pesan_sdm ? peserta.data.Peserta[0].Pendaftarans[0].pesan_sdm : ""}
+      readOnly
+      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Tidak ada pesan dari SDM"></textarea>
     </div>
     </div>
   );

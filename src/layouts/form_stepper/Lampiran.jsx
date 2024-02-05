@@ -18,8 +18,11 @@ const DataLampiran = () => {
     setFilePasFoto(event.target.files[0]);
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsLoading(true);
 
     try {
       // Mendapatkan token dari localStorage
@@ -69,14 +72,17 @@ const DataLampiran = () => {
       });
 
       if (response.ok) {
+        setIsLoading(false);
         window.alert("Selamat! Data kamu terkirim! Silahkan tunggu status selanjutnya!");
         navigate("/dashboard");
       } else {
         const data = await response.json();
-        console.error("Error:", data.message);
+        setIsLoading(false); 
+        window.alert("Error:", data.message);
         // Tampilkan pesan error kepada pengguna
       }
     } catch (error) {
+      setIsLoading(false);
       console.error("Error:", error.message);
       // Tangani error
     }
@@ -131,7 +137,10 @@ const DataLampiran = () => {
               </p>
             </div>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-center">
+          {isLoading && <Loader />}
+          </div>
+          <div className="flex items-center justify-between">
             <a
               onClick={() => navigate(-1)}
               className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
@@ -143,9 +152,6 @@ const DataLampiran = () => {
               className="text-white bg-[#0b4d8c] hover:bg-[#072e54] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Kirim
             </button>
-            <div className="flex items-center justify-center">
-              <Loader />
-            </div>
           </div>
         </form>
       </div>

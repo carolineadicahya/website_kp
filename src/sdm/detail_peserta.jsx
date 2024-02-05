@@ -111,12 +111,14 @@ const SDMDetail = () => {
               className="bg-red-500 text-white px-2 py-1 mb-6 rounded-md hover:bg-red-600">
               Tolak
             </button>
-            <button
-              // onClick={handleGetStarted}
-              type=""
-              className="bg-green-500 text-white px-2 py-1 mb-6 rounded-md hover:bg-green-600">
+            <a
+              href={peserta.data?.Peserta[0]?.nomor_whatsapp? `https://api.whatsapp.com/send?phone=${peserta.data.Peserta[0].nomor_whatsapp}`: '#'}
+              className="bg-green-500 text-white px-2 py-1 mb-6 rounded-md hover:bg-green-600"
+              target="_blank"
+  // rel="noopener noreferrer"
+            >
               Whatsapp
-            </button>
+            </a>
           </div>
         </div>
         <div className="items-left">

@@ -7,9 +7,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const handleGetStarted = () => {
-    navigate("/dashboard");
-  };
+  // const handleGetStarted = () => {
+  //   navigate("/dashboard");
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +29,17 @@ const Login = () => {
       // Cek status respons
       if (response.status === 200) {
         // Login berhasil, alihkan ke halaman dashboard
-        handleGetStarted();
+        if (email === "sekretaris@gmail.com") {
+          navigate("/sekretaris")
+        }
+        else if (email === "sdm@gmail.com") {
+          navigate("/sdm")
+        }
+        else {
+          navigate("/dashboard")
+        }
+
+        // handleGetStarted();
         window.location.reload();
         window.alert("Login Sukses");
 

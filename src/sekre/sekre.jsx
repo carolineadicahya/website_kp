@@ -2,8 +2,6 @@ import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { exportToExcel } from "react-easy-export";
 import NavigationBar from "../components/navbar";
-import axios from "axios";
-
 
 const Sekretaris = () => {
   const navigate = useNavigate();
@@ -12,8 +10,21 @@ const Sekretaris = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/peserta/bystatus?status_pendaftaran=Dikirim"); // Assuming your API is properly configured
-      setDataPeserta(response.data);
+      const token = localStorage.getItem("token");
+      const response = await fetch(`http://localhost:8000/pendaftaran/bystatus?status_pendaftaran=Dikirim`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setDataPeserta(data.data); // Sesuaikan dengan struktur data yang diterima dari backend
+        } else {
+          throw new Error("Gagal mengambil data peserta");
+        }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -180,12 +191,13 @@ const Sekretaris = () => {
                 className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {/* Render the nama, tingkat pendidikan, institusi, and periode */}
                 <div className="ps-3">
-                  <div className="text-base font-semibold">{peserta.nama}</div>
+                  <div className="text-base font-semibold">{peserta.Pesertum.nama}</div>
                 </div>
               </th>
-              <td className="text-center px-6 py-4">{peserta.tingkat_pendidikan}</td>
-              <td className="text-center px-6 py-4">{peserta.institusi}</td>
-              <td className="text-center px-6 py-4">{peserta.periode}</td>
+              <td className="text-center px-6 py-4">{peserta.Pesertum.tingkat_pendidikan}</td>
+              <td className="text-center px-6 py-4">{peserta.Pesertum.institusi}</td>
+              <td className="text-center px-6 py-4">{peserta.departemen}</td>
+              <td className="text-center px-6 py-4">{peserta.tanggal_mulai}-{peserta.tanggal_selesai}</td>
             </tr>
               ))}
           </tbody>
