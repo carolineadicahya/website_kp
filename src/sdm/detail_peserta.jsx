@@ -68,8 +68,8 @@ const SDMDetail = () => {
       });
 
       if (response.ok) {
-        // Jika berhasil, arahkan pengguna kembali ke halaman sebelumnya
-        // navigate(`/surat_balasan/${peserta.id}`);
+        navigate(-1);
+        window.alert("Peserta berhasil di Terima");
       } else {
         throw new Error("Gagal menerima peserta");
       }
@@ -88,8 +88,8 @@ const SDMDetail = () => {
       });
 
       if (response.ok) {
-        // Jika berhasil, arahkan pengguna kembali ke halaman sebelumnya
-        // navigate(`/surat_balasan/${peserta.id}`);
+        navigate(-1);
+        window.alert("Peserta berhasil di Tolak");
       } else {
         throw new Error("Gagal menolak peserta");
       }
@@ -115,8 +115,7 @@ const SDMDetail = () => {
       });
 
       if (response.ok) {
-        // Handle success response
-        // window.alert("Surat balasan berhasil diunggah");
+        setSelectedFile("");
       } else {
         throw new Error("Gagal mengunggah surat balasan");
       }
@@ -255,6 +254,45 @@ const SDMDetail = () => {
             Pas Foto</a>
           </p>
         </div>
+        <div className="mt-4">
+          <h4 className="mb-2 text-left text-xl font-semibold text-black dark:text-white">
+            Upload Surat
+          </h4>
+          <div className="items-left">
+              <input
+                aria-describedby="surat_pengantar_input_help"
+                id="surat_pengantar"
+                type="file"
+                onChange={handleFileChange}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+              <p
+                className="mt-1 text-left text-sm text-gray-500 dark:text-gray-300"
+                id="surat_pengantar_input_help">
+                PDF (MAX. 5MB).
+              </p>
+          </div>
+        </div>
+        <div className="items-left">
+          <label
+            for="message"
+            className="mt-6 block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white">
+            Pesan
+          </label>
+          <textarea
+            id="message"
+            rows="4"
+            value={pesanSdm}
+            onChange={(e) => setPesanSdm(e.target.value)}
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="pesan kosong"></textarea>
+          <button
+            onClick={handleKirim}
+            disabled={!selectedFile}
+            className="mt-3 bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-3 rounded-md">
+            Kirim
+          </button>
+        </div>
         <div>
           <h4 className="mt-8 mb-3 text-left text-xl font-semibold text-black dark:text-white">
             Status
@@ -281,51 +319,6 @@ const SDMDetail = () => {
               Whatsapp
             </a>
           </div>
-        </div>
-        <div className="mt-4">
-          <h4 className="mb-2 text-left text-xl font-semibold text-black dark:text-white">
-            Upload Surat
-          </h4>
-          <div className="items-left">
-              <input
-                aria-describedby="surat_pengantar_input_help"
-                id="surat_pengantar"
-                type="file"
-                onChange={handleFileChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
-              <p
-                className="mt-1 text-left text-sm text-gray-500 dark:text-gray-300"
-                id="surat_pengantar_input_help">
-                PDF (MAX. 5MB).
-              </p>
-              {/* <button
-                onClick={handleUpload}
-                disabled={!selectedFile}
-                className="mt-3 bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-3 rounded-md">
-                Kirim
-              </button> */}
-          </div>
-        </div>
-        <div className="items-left">
-          <label
-            for="message"
-            className="mt-6 block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white">
-            Pesan
-          </label>
-          <textarea
-            id="message"
-            rows="4"
-            value={pesanSdm}
-            onChange={(e) => setPesanSdm(e.target.value)}
-            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="pesan kosong"></textarea>
-          <button
-            onClick={handleKirim}
-            disabled={!selectedFile}
-            className="mt-3 bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-3 rounded-md">
-            Kirim
-          </button>
         </div>
       </div>
     </div>

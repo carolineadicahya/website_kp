@@ -173,18 +173,6 @@ const SekreDetail = () => {
             Pas Foto</a>
           </p>
         </div>
-        <div>
-          <h4 className="mt-8 mb-3 text-left text-xl font-semibold text-black dark:text-white">
-            Status
-          </h4>
-          <div className="items-left">
-            <button
-              onClick={handleReview}
-              className="bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-6 rounded-md">
-              Review
-            </button>
-          </div>
-        </div>
         <div className="items-left">
           <label
             htmlFor="message"
@@ -203,6 +191,18 @@ const SekreDetail = () => {
             className="mt-3 bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-3 rounded-md">
             Kirim
           </button>
+        </div>
+        <div>
+          <h4 className="mt-8 mb-3 text-left text-xl font-semibold text-black dark:text-white">
+            Status
+          </h4>
+          <div className="items-left">
+            <button
+              onClick={handleReview}
+              className="bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-6 rounded-md">
+              Review
+            </button>
+          </div>
         </div>
       </div>
     </div>
