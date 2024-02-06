@@ -42,10 +42,12 @@ const router = createBrowserRouter(
       <Route path="/dashboard" element={<StatusPeserta />} />
       <Route path="/profil" element={<ProfilPeserta />} />
       <Route path="/sekretaris" element={<Sekretaris />} />
-      <Route path="/peserta_magang" element={<SekreDetail />} />
+      {/* <Route path="/peserta_magang" element={<SekreDetail />} /> */}
+      <Route path="/peserta_magang/:id" element={<SekreDetail />} />
       <Route path="/sdm" element={<SDM />} />
-      <Route path="/detail_peserta" element={<SDMDetail />} />
-      <Route path="/surat_balasan" element={<Upload />} />
+      {/* <Route path="/detail_peserta" element={<SDMDetail />} /> */}
+      <Route path="/detail_peserta/:id" element={<SDMDetail />} />
+      <Route path="/surat_balasan/:id" element={<Upload />} />
       <Route path="/data_diri" element={<DataDiri />} />
       <Route path="/data_pendidikan" element={<DataPendidikan />} />
       <Route path="/data_magang" element={<DataMagang />} />

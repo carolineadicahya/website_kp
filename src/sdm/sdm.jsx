@@ -1,26 +1,20 @@
 import React, {useState, useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { exportToExcel } from "react-easy-export";
 import NavigationBar from "../components/navbar";
 
-// import gambar1 from "../assets/gambar1.jpg";
-// import gambar2 from "../assets/gambar2.jpg";
-// import gambar4 from "../assets/gambar4.jpg";
-
 const SDM = () => {
   const navigate = useNavigate();
-
-  const handleGetStarted = () => {
-    navigate("/detail_peserta");
-  };
-
   const [dataPeserta, setDataPeserta] = useState([]);
-
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/pendaftaran/bystatus?status_pendaftaran=Direview`, {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`http://localhost:8000/peserta/bystatus?status_pendaftaran=Direview`, {
           method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
         });
 
         if (response.ok) {
@@ -38,6 +32,12 @@ const SDM = () => {
   useEffect(() => {
     fetchData(); // Fetch data when the component mounts
   }, []); // Empty dependency array ensures this effect runs once
+
+  function formatDate(dateString) {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleDateString('id-ID', options);
+    return formattedDate;
+  }  
 
   const handleExportToExcel = () => {
     exportToExcel(dataPeserta, "data_peserta.xls");
@@ -201,8 +201,17 @@ const SDM = () => {
               </th>
               <td className="text-center px-6 py-4">{peserta.Pesertum.tingkat_pendidikan}</td>
               <td className="text-center px-6 py-4">{peserta.Pesertum.institusi}</td>
-              <td className="text-center px-6 py-4">{peserta.departemen}</td>
-              <td className="text-center px-6 py-4">{peserta.periode}</td>
+              <td className="text-center px-6 py-4">{peserta.departemen_magang}</td>
+              <td className="text-center px-6 py-4">{formatDate(peserta.tanggal_mulai)} - {formatDate(peserta.tanggal_selesai)}</td>
+              <td className="px-6 py-4">
+                {/* <!-- Modal toggle --> */}
+                <Link
+                      to={`/detail_peserta/${peserta.id}`} // Atur properti 'to' untuk menavigasikan pengguna ke halaman detail peserta
+                      className="font-medium text-blue-600 hover:text-blue-900 dark:text-blue-500 hover:underline"
+                    >
+                  Detail
+                </Link>
+              </td>
             </tr>
               ))}
           </tbody>
