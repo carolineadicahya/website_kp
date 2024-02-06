@@ -29,7 +29,17 @@ const Sekretaris = () => {
     }
   };
 
+  const checkRole = async () => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://localhost:8000/user/token/${token}`, {
+          method: "GET",
+      });
+    if (response.role != "sekretaris") {
+      navigate("/login")
+    }
+  }
   useEffect(() => {
+    checkRole();
     fetchData(); // Fetch data when the component mounts
   }, []); // Empty dependency array ensures this effect runs once
 

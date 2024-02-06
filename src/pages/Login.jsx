@@ -51,7 +51,12 @@ const Login = () => {
         throw new Error("Login gagal");
       }
     } catch (error) {
-      window.alert("Terdapat kesalahan saat login: " + error.message);
+      console.log(error);
+      if (error.response) {
+        window.alert("Terdapat kesalahan saat login: " + error.response.data.message);
+      } else {
+        window.alert("Terdapat kesalahan saat login: " + error.message);
+      }
     }
   };
 

@@ -11,7 +11,7 @@ const ProfilPeserta = () => {
         const token = localStorage.getItem("token");
 
         // Ganti URL dengan URL endpoint yang sesuai di backend Anda
-        const response = await fetch(`http://localhost:8000/user/token/${token}`, {
+        const response = await fetch(`http://localhost:8000/user/peserta/token/${token}`, {
           method: "GET",
         });
 

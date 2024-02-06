@@ -30,6 +30,7 @@ const Register = () => {
       // Cek status respons
       if (response.ok) {
         // Registrasi berhasil, alihkan ke halaman login
+        window.alert("Daftar Berhasil! Silahkan login" );
         navigate("/login");
       } else {
         throw new Error("Registrasi gagal");
