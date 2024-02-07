@@ -3,14 +3,29 @@ import { useNavigate, Link } from "react-router-dom";
 import { exportToExcel } from "react-easy-export";
 import NavigationBar from "../components/navbar";
 
-const Sekretaris = () => {
+const PesertaTolak = () => {
   const navigate = useNavigate();
   const [dataPeserta, setDataPeserta] = useState([]);
+
+  const checkRole = async () => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://localhost:8000/user/token/${token}`, {
+          method: "GET",
+    });
+    if (response.ok) {
+      const data = await response.json();
+      if (data.data.role != "sdm") {
+        navigate("/login")}
+      console.log(data);
+    } else {
+      throw new Error("Gagal mengambil data");
+    }
+  }
 
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:8000/peserta/bystatus?status_pendaftaran=Dikirim`, {
+      const response = await fetch(`http://localhost:8000/peserta/bystatus?status_pendaftaran=Ditolak`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -29,24 +44,8 @@ const Sekretaris = () => {
     }
   };
 
-  const checkRole = async () => {
-    const token = localStorage.getItem("token");
-    const response = await fetch(`http://localhost:8000/user/token/${token}`, {
-          method: "GET",
-    });
-    if (response.ok) {
-      const data = await response.json();
-      if (data.data.role != "sekretaris") {
-        navigate("/login")}
-      console.log(data);
-    } else {
-      throw new Error("Gagal mengambil data");
-    }
-  }
-  
   useEffect(() => {
     checkRole();
-    // debug.console(checkRole);
     fetchData(); // Fetch data when the component mounts
   }, []); // Empty dependency array ensures this effect runs once
 
@@ -102,30 +101,16 @@ const Sekretaris = () => {
                 aria-labelledby="dropdownActionButton">
                 <li>
                   <a
-                    href="#"
+                    href="/sdm"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Siswa
+                    Dashboard
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
-                    className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Mahasiswa
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
+                    href="/peserta_terima"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Diterima
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Ditolak
                   </a>
                 </li>
               </ul>
@@ -223,7 +208,7 @@ const Sekretaris = () => {
               <td className="px-6 py-4">
                 {/* <!-- Modal toggle --> */}
                 <Link
-                      to={`/peserta_magang/${peserta.id}`} // Atur properti 'to' untuk menavigasikan pengguna ke halaman detail peserta
+                      to={`/detail/${peserta.id}`} // Atur properti 'to' untuk menavigasikan pengguna ke halaman detail peserta
                       className="font-medium text-blue-600 hover:text-blue-900 dark:text-blue-500 hover:underline"
                     >
                   Detail
@@ -243,7 +228,7 @@ const Sekretaris = () => {
             {/* ... (modal content) ... */}
           </div>
         </div>
-        <div className="flex justify-end mt-2 mb-2 mr-2">
+        <div className="flex justify-end  mt-2 mb-2 mr-2">
           <button
             onClick={handleExportToExcel}
             className="bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 rounded-md">
@@ -256,4 +241,4 @@ const Sekretaris = () => {
   );
 };
 
-export default Sekretaris;
+export default PesertaTolak;

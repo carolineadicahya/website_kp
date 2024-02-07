@@ -8,7 +8,23 @@ const SekreDetail = () => {
   const [pesanSekretaris, setPesanSekretaris] = useState("");
   const navigate = useNavigate();
 
+  const checkRole = async () => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://localhost:8000/user/token/${token}`, {
+          method: "GET",
+    });
+    if (response.ok) {
+      const data = await response.json();
+      if (data.data.role != "sekretaris") {
+        navigate("/login")}
+      console.log(data);
+    } else {
+      throw new Error("Gagal mengambil data");
+    }
+  }
+
   useEffect(() => {
+    checkRole();
     const fetchPesertaById = async () => {
       try {
         const response = await fetch(`http://localhost:8000/pendaftaran/${id}`, {
@@ -34,28 +50,18 @@ const SekreDetail = () => {
 
   const handleReview = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/pendaftaran/${id}/review`, {
+      const reviewResponse = await fetch(`http://localhost:8000/pendaftaran/${id}/review`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
-      if (response.ok) {
-        // Jika berhasil, arahkan pengguna kembali ke halaman sebelumnya
-        navigate(-1);
-        window.alert("Berkas Peserta berhasil di Review");
-      } else {
+      if (!reviewResponse.ok) {
         throw new Error("Gagal melakukan review");
       }
-    } catch (error) {
-      console.error("Error reviewing data:", error);
-    }
-  };
 
-  const handlePesanSekretaris = async () => {
-    try {
-      const response = await fetch(`http://localhost:8000/pendaftaran/${id}/pesan-sekretaris`, {
+      const messageResponse = await fetch(`http://localhost:8000/pendaftaran/${id}/pesan-sekretaris`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -64,18 +70,40 @@ const SekreDetail = () => {
         body: JSON.stringify({ pesan_sekretaris: pesanSekretaris }), // Mengirim pesan sekretaris dalam format JSON
       });
 
-      if (response.ok) {
-        // Reset pesan sekretaris setelah berhasil mengirim
-        setPesanSekretaris("");
-        alert("Pesan berhasil dikirim");
-        // Lakukan sesuatu setelah berhasil mengirim, misalnya menampilkan notifikasi
-      } else {
+      if (!messageResponse.ok) {
         throw new Error("Gagal mengirim pesan sekretaris");
       }
+      setPesanSekretaris("");
+      alert("Berkas Peserta berhasil di Review dan pesan berhasil dikirim");
+      navigate(-1);
     } catch (error) {
-      console.error("Error sending secretariat message:", error);
+      console.error("Error:", error);
     }
   };
+
+  // const handlePesanSekretaris = async () => {
+  //   try {
+  //     const response = await fetch(`http://localhost:8000/pendaftaran/${id}/pesan-sekretaris`, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //       body: JSON.stringify({ pesan_sekretaris: pesanSekretaris }), // Mengirim pesan sekretaris dalam format JSON
+  //     });
+
+  //     if (response.ok) {
+  //       // Reset pesan sekretaris setelah berhasil mengirim
+  //       setPesanSekretaris("");
+  //       alert("Pesan berhasil dikirim");
+  //       // Lakukan sesuatu setelah berhasil mengirim, misalnya menampilkan notifikasi
+  //     } else {
+  //       throw new Error("Gagal mengirim pesan sekretaris");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error sending secretariat message:", error);
+  //   }
+  // };
   
 
   if (!peserta) {
@@ -176,23 +204,28 @@ const SekreDetail = () => {
         <div className="items-left">
           <label
             htmlFor="message"
-            class="mt-5 block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white">
-            Pesan
+            className="mt-5 block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white">
+            Tambahkan Pesan
           </label>
           <textarea
             id="message"
             rows="4"
             value={pesanSekretaris}
             onChange={(e) => setPesanSekretaris(e.target.value)}
-            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="pesan kosong"></textarea>
-          <button
+          {/* <button
             onClick={handlePesanSekretaris}
             className="mt-3 bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-3 rounded-md">
             Kirim
-          </button>
+          </button> */}
+            <button
+              onClick={handleReview}
+              className="mt-3 bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-6 rounded-md">
+              Review
+            </button>
         </div>
-        <div>
+        {/* <div>
           <h4 className="mt-8 mb-3 text-left text-xl font-semibold text-black dark:text-white">
             Status
           </h4>
@@ -203,7 +236,7 @@ const SekreDetail = () => {
               Review
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
     </div>

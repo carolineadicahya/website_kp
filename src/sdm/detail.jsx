@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NavigationBar from "../components/navbar";
 
-const SDMDetail = () => {
+const Detail = () => {
   const {id} = useParams();
   const [peserta, setPeserta] = useState(null);
   const [pesanSdm, setPesanSdm] = useState("");
@@ -248,81 +248,10 @@ const SDMDetail = () => {
             Pas Foto</a>
           </p>
         </div>
-        <div>
-        <label
-            for="message"
-            className="mt-6 block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white">
-            Status
-          </label>
-          <div className="flex items-center">
-            <input type="radio" name="status_terima" id="status_terima" className="mr-1 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                        />Terima
-            <input type="radio" name="status_tolak" id="status_tolak" className="mr-1 ml-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-/>Tolak
-        </div>
-        <div className="mt-4">
-          <h4 className="mb-2 text-left text-xl font-semibold text-black dark:text-white">
-            Upload Surat
-          </h4>
-          <div className="items-left">
-              <input
-                aria-describedby="surat_pengantar_input_help"
-                id="surat_pengantar"
-                type="file"
-                onChange={handleFileChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
-              <p
-                className="mt-1 text-left text-sm text-gray-500 dark:text-gray-300"
-                id="surat_pengantar_input_help">
-                PDF (MAX. 5MB).
-              </p>
-          </div>
-        </div>
-        <div className="items-left">
-          <label
-            for="message"
-            className="mt-6 block mb-2 text-left text-xl font-medium text-gray-900 dark:text-white">
-            Pesan
-          </label>
-          <textarea
-            id="message"
-            rows="4"
-            value={pesanSdm}
-            onChange={(e) => setPesanSdm(e.target.value)}
-            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="pesan kosong"></textarea>
-            <div className="flex justify">
-              <button
-            onClick={handleKirim}
-            disabled={!selectedFile}
-            className="mt-3 bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-3 rounded-md">
-            Kirim
-          </button>
-          <a aria-label="Chat on WhatsApp" className="bg-green-500 text-white px-2 py-1 mb-6 rounded-md hover:bg-green-600" href={`https://wa.me/${Pesertum.nomor_whatsapp}`}><img alt="Chat on WhatsApp" src="WhatsAppButtonGreenLarge.svg" /></a>
-            </div>
-          
-        </div>
-        <div>
-            {/* <button
-              onClick={handleTerima}
-              type=""
-              className="bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-6 rounded-md">
-              Terima
-            </button>
-            <button
-              onClick={handleTolak}
-              type=""
-              className="bg-red-500 text-white px-2 py-1 mb-6 rounded-md hover:bg-red-600">
-              Tolak
-            </button>
-            */}
-          </div>
-        </div>
       </div>
     </div>
     </div>
   );
 };
 
-export default SDMDetail;
+export default Detail;

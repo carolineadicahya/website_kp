@@ -7,6 +7,21 @@ const SDM = () => {
   const navigate = useNavigate();
   const [dataPeserta, setDataPeserta] = useState([]);
 
+  const checkRole = async () => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://localhost:8000/user/token/${token}`, {
+          method: "GET",
+    });
+    if (response.ok) {
+      const data = await response.json();
+      if (data.data.role != "sdm") {
+        navigate("/login")}
+      console.log(data);
+    } else {
+      throw new Error("Gagal mengambil data");
+    }
+  }
+
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -30,6 +45,7 @@ const SDM = () => {
   };
 
   useEffect(() => {
+    checkRole();
     fetchData(); // Fetch data when the component mounts
   }, []); // Empty dependency array ensures this effect runs once
 
@@ -85,28 +101,14 @@ const SDM = () => {
                 aria-labelledby="dropdownActionButton">
                 <li>
                   <a
-                    href="#"
-                    className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Siswa
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Mahasiswa
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
+                    href="/peserta_terima"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Diterima
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/peserta_tolak"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Ditolak
                   </a>
