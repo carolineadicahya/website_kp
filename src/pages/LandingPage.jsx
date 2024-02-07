@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import NavigationBar from "../components/navbar";
 import ilust from "../assets/ilust.png";
 import ilust_bidang from "../assets/ilust_bidang.png";
 
@@ -12,6 +13,9 @@ const LandingPage = () => {
 
   return (
     <section className="container mx-auto mt-24 flex flex-col items-center justify-center bg-cover bg-center ">
+      <div>
+        <NavigationBar role="guest" />
+      </div>
       <div className="flex flex-col items-center md:flex-row md:justify-center">
         <div className="max-w-3xl p-4 md:p-10 mb-8 md:text-center">
           <h1 className="text-left text-4xl md:text-5xl dark:text-[#a6d16a] font-bold mb-4 text-[#0b4d8c]">
