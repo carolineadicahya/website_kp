@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NavigationBar from "../components/navbar";
+import Loader from "../components/loader";
 
 const Detail = () => {
   const { id } = useParams();

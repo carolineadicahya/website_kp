@@ -101,9 +101,16 @@ const PesertaTerima = () => {
                 aria-labelledby="dropdownActionButton">
                 <li>
                   <a
-                    href="/sdm"
+                    href="/peserta"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sdm"
+                    className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Semua
                   </a>
                 </li>
                 <li>
@@ -182,6 +189,9 @@ const PesertaTerima = () => {
                 Periode
               </th>
               <th scope="col" className="px-6 py-3">
+                Status
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Detail Peserta
               </th>
             </tr>
@@ -205,6 +215,7 @@ const PesertaTerima = () => {
               <td className="text-center px-6 py-4">{peserta.Pesertum.institusi}</td>
               <td className="text-center px-6 py-4">{peserta.departemen_magang}</td>
               <td className="text-center px-6 py-4">{formatDate(peserta.tanggal_mulai)} - {formatDate(peserta.tanggal_selesai)}</td>
+              <td className="text-center px-6 py-4">{peserta.status_pendaftaran}</td>
               <td className="px-6 py-4">
                 {/* <!-- Modal toggle --> */}
                 <Link

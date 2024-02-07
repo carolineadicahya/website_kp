@@ -17,9 +17,9 @@ const DataDiri = () => {
     e.preventDefault();
 
     if (!nama || !alamat || !noWhatsapp || !tempatTanggalLahir || !jenisKelamin) {
-      setErrorText("Semua data harus di isi!");    } 
-      else {
-        setErrorText("");
+      window.alert("Semua data harus di isi!");
+      return;
+    }
       try {
         // Simpan data formulir
         localStorage.setItem("dataDiri", JSON.stringify({ nama, tempatTanggalLahir, alamat, noWhatsapp, jenisKelamin }));
@@ -28,7 +28,6 @@ const DataDiri = () => {
         console.error('Terjadi kesalahan:', error.message);
         // Tangani kesalahan, misalnya tampilkan pesan kepada pengguna
       }
-    }
   };
 
 

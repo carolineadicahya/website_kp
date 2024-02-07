@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import NavigationBar from "../components/navbar";
+import Loader from "../components/loader";
 
 const SekreDetail = () => {
   const { id } = useParams();
@@ -54,6 +55,11 @@ const SekreDetail = () => {
 
   const handleReview = async () => {
     try {
+      const confirmed = window.confirm("Apakah Anda yakin ingin mereview peserta?");
+      if (!confirmed) {
+        return; // Jika tidak, hentikan proses pengiriman
+      }
+
       const reviewResponse = await fetch(
         `http://localhost:8000/pendaftaran/${id}/review`,
         {

@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { exportToExcel } from "react-easy-export";
 import NavigationBar from "../components/navbar";
 
-const SDM = () => {
+const PesertaAll = () => {
   const navigate = useNavigate();
   const [dataPeserta, setDataPeserta] = useState([]);
 
@@ -25,7 +25,7 @@ const SDM = () => {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:8000/peserta/bystatus?status_pendaftaran=Direview`, {
+      const response = await fetch(`http://localhost:8000/pendaftaran/`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -101,9 +101,9 @@ const SDM = () => {
                 aria-labelledby="dropdownActionButton">
                 <li>
                   <a
-                    href="/peserta"
+                    href="/sdm"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Semua
+                    Dashboard
                   </a>
                 </li>
                 <li>
@@ -115,7 +115,7 @@ const SDM = () => {
                 </li>
                 <li>
                   <a
-                    href="/peserta_tolak"
+                    href="/peserta_terima"
                     className="block px-4 py-2 dark:text-[#d9ebbd] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Ditolak
                   </a>
@@ -219,7 +219,7 @@ const SDM = () => {
               <td className="px-6 py-4">
                 {/* <!-- Modal toggle --> */}
                 <Link
-                      to={`/detail_peserta/${peserta.id}`} // Atur properti 'to' untuk menavigasikan pengguna ke halaman detail peserta
+                      to={`/detail/${peserta.id}`} // Atur properti 'to' untuk menavigasikan pengguna ke halaman detail peserta
                       className="font-medium text-blue-600 hover:text-blue-900 dark:text-blue-500 hover:underline"
                     >
                   Detail
@@ -252,4 +252,4 @@ const SDM = () => {
   );
 };
 
-export default SDM;
+export default PesertaAll;

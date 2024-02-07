@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NavigationBar from "../components/navbar";
+import Loader from "../components/loader";
 
 const SDMDetail = () => {
   const { id } = useParams();
@@ -104,61 +105,88 @@ const SDMDetail = () => {
 
   const handleKirim = async () => {
     try {
+      const confirmed = window.confirm("Apakah Anda yakin ingin mengubah status?");
+      if (!confirmed) {
+        return; // Jika tidak, hentikan proses pengiriman
+      }
       const formData = new FormData();
       formData.append("pdfFile", selectedFile);
-
+  
       // unggah surat balasan
       try {
-        const response = await fetch(
-          `http://localhost:8000/pendaftaran/${id}/surat-balasan`,
-          {
-            method: "PUT",
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-            body: formData,
-          }
-        );
-
-        if (response.ok) {
-          setSelectedFile("");
-        } else {
+        const response = await fetch(`http://localhost:8000/pendaftaran/${id}/surat-balasan`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: formData,
+        });
+  
+        if (!response.ok) {
           throw new Error("Gagal mengunggah surat balasan");
         }
       } catch (error) {
         console.error("Error uploading file:", error);
+        return; // Berhenti jika gagal mengunggah surat balasan
       }
-
-      // Mengirim pesan SDM
+  
+      // Ambil status dari radio button
+      const radioTerima = document.getElementById("status_terima");
+      const radioTolak = document.getElementById("status_tolak");
+      let status = "";
+  
+      if (radioTerima.checked) {
+        status = "terima";
+      } else if (radioTolak.checked) {
+        status = "tolak";
+      } else {
+        // Jika tidak ada yang dipilih, tampilkan pesan kesalahan
+        window.alert("Pilih status Terima atau Tolak");
+        return;
+      }
+  
+      // Kirim request sesuai dengan status yang dipilih
       try {
-        const response = await fetch(
-          `http://localhost:8000/pendaftaran/${id}/pesan-sdm`,
-          {
+        const response = await fetch(`http://localhost:8000/pendaftaran/${id}/${status}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error(`Gagal ${status} peserta`);
+        }
+  
+        // Mengirim pesan SDM
+        try {
+          const response = await fetch(`http://localhost:8000/pendaftaran/${id}/pesan-sdm`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({ pesan_sdm: pesanSdm }), // Mengirim pesan sekretaris dalam format JSON
+          });
+  
+          if (response.ok) {
+            setPesanSdm("");
+            window.alert("Surat Balasan dan Pesan berhasil dikirim");
+            navigate(-1);
+          } else {
+            throw new Error("Gagal mengirim pesan sekretaris");
           }
-        );
-
-        if (response.ok) {
-          // Reset pesan sekretaris setelah berhasil mengirim
-          setPesanSdm("");
-          // Handle success response untuk pengiriman pesan SDM
-          window.alert("Surat Balasan dan Pesan berhasil dikirim");
-          // Lakukan sesuatu setelah berhasil mengirim, misalnya menampilkan notifikasi
-        } else {
-          throw new Error("Gagal mengirim pesan sekretaris");
+        } catch (error) {
+          console.error("Error sending secretariat message:", error);
         }
       } catch (error) {
-        console.error("Error sending secretariat message:", error);
+        console.error(`Error ${status} peserta:`, error);
       }
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
 
   if (!peserta) {
     return (
@@ -336,15 +364,6 @@ const SDMDetail = () => {
                   className="mt-3 bg-[#0b4d8c] hover:bg-[#073560] text-white px-2 py-1 mb-3 rounded-md">
                   Kirim
                 </button>
-                <a
-                  aria-label="Chat on WhatsApp"
-                  className="bg-green-500 text-white px-2 py-1 mb-6 rounded-md hover:bg-green-600"
-                  href={`https://wa.me/${Pesertum.nomor_whatsapp}`}>
-                  <img
-                    alt="Chat on WhatsApp"
-                    src="WhatsAppButtonGreenLarge.svg"
-                  />
-                </a>
               </div>
             </div>
           </div>

@@ -33,7 +33,12 @@ const Register = () => {
         window.alert("Daftar Berhasil! Silahkan login" );
         navigate("/login");
       } else {
-        throw new Error("Registrasi gagal");
+        const responseData = await response.json();
+        if (response.status === 400 && responseData.message === "Email telah terdaftar") {
+          throw new Error("Email telah terdaftar. Silakan gunakan email lain.");
+        } else {
+          throw new Error("Registrasi gagal");
+        }
       }
     } catch (error) {
       alert("Terdapat kesalahan saat registrasi: " + error.message);

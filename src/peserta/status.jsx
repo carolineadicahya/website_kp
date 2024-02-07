@@ -12,7 +12,7 @@ const StatusPeserta = () => {
         const token = localStorage.getItem("token");
 
         // Ganti URL dengan URL endpoint yang sesuai di backend Anda
-        const response = await fetch(`http://localhost:8000/user/token/${token}`, {
+        const response = await fetch(`http://localhost:8000/user/peserta/token/${token}`, {
           method: "GET",
         });
 
@@ -67,15 +67,27 @@ const StatusPeserta = () => {
               <td className="px-6 py-4 text-center dark:text-white">
               {peserta && peserta.data && peserta.data.Peserta && peserta.data.Peserta[0] && peserta.data.Peserta[0].Pendaftarans && peserta.data.Peserta[0].Pendaftarans[0] && peserta.data.Peserta[0].Pendaftarans[0].status_pendaftaran}
               </td>
-              <td>
+              <td className="px-6 py-4 text-center dark:text-white">
+                {peserta && peserta.data && peserta.data.Peserta && peserta.data.Peserta[0] && peserta.data.Peserta[0].Pendaftarans && peserta.data.Peserta[0].Pendaftarans[0] && (peserta.data.Peserta[0].Pendaftarans[0].status_pendaftaran === "Dikirim" || peserta.data.Peserta[0].Pendaftarans[0].status_pendaftaran === "Direview") ? ("-") : (
+                  <a
+                    href={peserta && peserta.data && peserta.data.Peserta && peserta.data.Peserta[0] && peserta.data.Peserta[0].Pendaftarans && peserta.data.Peserta[0].Pendaftarans[0] && peserta.data.Peserta[0].Pendaftarans[0].surat_balasan}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-4 text-center underline hover:text-blue-500 dark:text-white dark:hover:text-blue-500 decoration-gray-500">
+                    Surat Balasan
+                  </a>
+                )}
+              </td>
+
+              {/* <td>
                 <a
                   href={peserta && peserta.data && peserta.data.Peserta && peserta.data.Peserta[0] && peserta.data.Peserta[0].Pendaftarans && peserta.data.Peserta[0].Pendaftarans[0] && peserta.data.Peserta[0].Pendaftarans[0].surat_balasan}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-4 text-center underline hover:text-gray-700 dark:text-white dark:hover:text-blue-500 decoration-gray-500">
+                  className="px-6 py-4 text-center underline hover:text-blue-500 dark:text-white dark:hover:text-blue-500 decoration-gray-500">
                   Surat Balasan
                 </a>
-              </td>
+              </td> */}
             </tr>
           </tbody>
         </table>

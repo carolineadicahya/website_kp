@@ -33,6 +33,7 @@ import DataLampiran from "./layouts/form_stepper/Lampiran";
 import PesertaTerima from "./sdm/peserta_terima";
 import Detail from "./sdm/detail";
 import PesertaTolak from "./sdm/peserta_tolak";
+import PesertaAll from "./sdm/peserta_all";
 import { FormDataProvider } from './context/FormDataContext';
 
 const router = createBrowserRouter(
@@ -57,6 +58,7 @@ const router = createBrowserRouter(
       <Route path="/lampiran" element={<DataLampiran />} />
       <Route path="/peserta_terima" element={<PesertaTerima />} />
       <Route path="/peserta_tolak" element={<PesertaTolak />} />
+      <Route path="/peserta" element={<PesertaAll />} />
       <Route path="/detail/:id" element={<Detail />} />
       <Route path="/error" element={<Error />} />
     </Route>

@@ -43,21 +43,6 @@ const DataMagang = () => {
       return;
     }
 
-    // let startDate = null;
-    // let endDate = null;
-
-    // if (dateRange.startDate instanceof Date) {
-    //   startDate = dateRange.startDate.toISOString().split('T')[0];
-    // }
-
-    // if (dateRange.endDate instanceof Date) {
-    //   endDate = dateRange.endDate.toISOString().split('T')[0];
-    // }
-
-    // konversikan tanggal ke format yyyy-mm-dd
-    // const startDateString = startDate instanceof Date ? startDate.toISOString().split('T')[0] : "";
-    // const endDateString = endDate instanceof Date ? endDate.toISOString().split('T')[0] : "";
-
     localStorage.setItem("dataMagang", JSON.stringify(
     {departemen: selectedOption,
       bidang_minat: selectedInterest,
@@ -199,16 +184,21 @@ const DataMagang = () => {
                 className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Durasi Magang
               </label>
-              <input
-                type="text"
-                name="durasi_magang"
-                id="durasi_magang"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="contoh: 2 Bulan"
-                value={durasiMagang}
-                onChange={handleDurasiMagangChange}
-                required=""
-              />
+              <select
+                  name="durasi_magang"
+                  id="durasi_magang"
+                  value={durasiMagang}
+                  onChange={handleDurasiMagangChange}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option value="">Pilih Durasi Magang</option>
+                  <option value="1 Bulan">1 Bulan</option>
+                  <option value="2 Bulan">2 Bulan</option>
+                  <option value="3 Bulan">3 Bulan</option>
+                  <option value="4 Bulan">4 Bulan</option>
+                  <option value="5 Bulan">5 Bulan</option>
+                  <option value="6 Bulan">6 Bulan</option>
+                </select>
             </div>
 
             {/* tanggal mulai */}

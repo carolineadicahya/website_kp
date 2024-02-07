@@ -108,15 +108,6 @@ const Login = () => {
                 />
               </div>
 
-              <div className="mb-6 flex items-center justify-end">
-                {/* Forgot password link */}
-                <a
-                  href="#!"
-                  className="text-[#0b4d8c] transition duration-150 ease-in-out hover:text-[#74914a] focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600 dark:text-white">
-                  Lupa Password?
-                </a>
-              </div>
-
               {/* Submit button */}
               <button
                 type="submit"
